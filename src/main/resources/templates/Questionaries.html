@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>index</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+	
+</head>
+<body>
+	<h1>Questonaries</h1>
+	<table>
+		<tr>
+			<th>Name</th>
+		</tr>
+		<tr th:each="questonary: ${questonaries}">
+			<td th:text="${questonary.name}"></td>
+			<td><a href="@{/add/{id}(id=${questonary.id})}" class="btn btn-primary">Add Question</a> </td>
+			
+		</tr>
+			
+	</table>
+</body>
+</html>
