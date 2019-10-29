@@ -1,13 +1,13 @@
-package com.springboot.ibiza.surveyapp.domain;
+package com.springboot.ibiza.surveyapp.jdbc.beans;
 
-public class AnswerDomain {
+public class AnswerBean {
     private int answerId;
     private String answer;
-	public AnswerDomain() {
+	public AnswerBean() {
 		super();
 	}
 	
-	public AnswerDomain(int answerId, String answer) {
+	public AnswerBean(int answerId, String answer) {
 		super();
 		this.answerId = answerId;
 		this.answer = answer;

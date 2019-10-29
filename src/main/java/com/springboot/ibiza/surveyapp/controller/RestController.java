@@ -1,77 +1,81 @@
 package com.springboot.ibiza.surveyapp.controller;
 
 import java.util.List;
-import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.springboot.ibiza.surveyapp.dao.answerDAO.AnswerDao;
-import com.springboot.ibiza.surveyapp.domain.AnswerDomain;
-import com.springboot.ibiza.surveyapp.domainJPA.Question;
-import com.springboot.ibiza.surveyapp.domainJPA.QuestionRepository;
-import com.springboot.ibiza.surveyapp.domainJPA.Questionary;
-import com.springboot.ibiza.surveyapp.domainJPA.QuestionaryRepository;
+import com.springboot.ibiza.surveyapp.jpa.beans.AnswerBean;
+import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
+import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
+import com.springboot.ibiza.surveyapp.service.CommonService;
 
 @Controller
 @RequestMapping("/api/v1/")
 public class RestController {
     
-	/*@Autowired
-	private AnswerDao answerDao;*/
-	
 	@Autowired
-	private QuestionRepository qrepo;
+	private CommonService service;
 	
-	@Autowired
-	private QuestionaryRepository querepo;
+	/* REST API FOR ::ANSWER:: OBJECT */
+	@RequestMapping(value = "answers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<AnswerBean> findAllAnswers(){
+		return service.findAllAnswers();
+	}
 	
-	/*@RequestMapping(value = "answers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<AnswerDomain> findAllAnswers(){
-		return answerDao.findAllAnswers();
-	}*/
+	@RequestMapping(value="/answers", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public AnswerBean save(@Valid @RequestBody AnswerBean answerBean) {
+		return service.createAnswer(answerBean);
+	}
 	
-	@RequestMapping(value="/questions", method = RequestMethod.GET)
-	public @ResponseBody List<Question> questionRest() {
-		return(List<Question>)qrepo.findAll();
+	/* REST API FOR ::QUESTION:: OBJECT */
+	@RequestMapping(value="/questions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<QuestionBean> questionRest() {
+		return service.findAllQuestions();
+	}
+	
+	@RequestMapping(value="/questions", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public QuestionBean save(@Valid @RequestBody QuestionBean questionBean) {
+		return service.createQuestion(questionBean);
+	}
+	
+	/* REST API FOR ::QUESTIONARY:: OBJECT */
+	@RequestMapping(value="/questionaries", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public QuestionaryBean save(@Valid @RequestBody QuestionaryBean questionaryBean) {
+		return service.createQuestionary(questionaryBean);
+	}
+	
+	@RequestMapping(value="questionaries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<QuestionaryBean> findAllQuestionaries() {
+		return service.findAllQuestionaries();
 	}
 	
 	//REST SERVICE USING ID
-	@RequestMapping(value="/questions/{id}", method = RequestMethod.GET)
-	public @ResponseBody Optional<Question> findQuestionRest(@PathVariable("questionId")Long id) {
+/*	@RequestMapping(value="/questions/{id}", method = RequestMethod.GET)
+	public @ResponseBody Optional<QuestionBean> findQuestionRest(@PathVariable("questionId")Long id) {
 		return qrepo.findById(id);
 	}
 	//ADDING QUESTION WITH THIS
 	@RequestMapping(value="/add")
 	public String addQuestion(Model model) {
-		model.addAttribute("question", new Question());
+		model.addAttribute("question", new QuestionBean());
 		return "AddQuestion";
 	}
 	@RequestMapping(value="/add/{id}")
 	public String addQuestion(@PathVariable("id")Long id,Model model) {
-		model.addAttribute("question", new Question(id));
+		model.addAttribute("question", new QuestionBean(id));
 		//model.addAttribute("questionary", querepo.findById(id));
 		return "AddQuestion";
-	}
-	@RequestMapping(value="/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("question") Question question,
-			@ModelAttribute("questionary") Questionary questionary) {
-		qrepo.save(question);
-		return "redirect:../Questionaries";
-	}
-	//Shows all questionarys
-	@RequestMapping(value="questionaries")
-	public String questionarysFind(Model model) {
-		model.addAttribute("questionaries", querepo.findAll());
-		return "Questionaries";
-	}
+	}*/
+	
+
 	
 	
 }

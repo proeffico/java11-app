@@ -1,30 +1,39 @@
-package com.springboot.ibiza.surveyapp.domainJPA;
+package com.springboot.ibiza.surveyapp.jpa.beans;
 
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
-public class Questionary {
+@Table(name = "questionary")
+public class QuestionaryBean {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
 	private Long questionaryId;
 	
+	@Column(name="name")
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questionary")
-	private List<Question> questions;
-	public Questionary() {
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name="fk_question_id")
+	private List<QuestionBean> questionBeans;
+	
+	public QuestionaryBean() {
 		super();
 	}
 
-	public Questionary(Long questionaryId, String name) {
+	public QuestionaryBean(Long questionaryId, String name) {
 		super();
 		this.questionaryId = questionaryId;
 		this.name = name;
@@ -46,12 +55,12 @@ public class Questionary {
 		this.name = name;
 	}
 
-	public List<Question> getQuestions() {
-		return questions;
+	public List<QuestionBean> getQuestions() {
+		return questionBeans;
 	}
 
-	public void setQuestions(List<Question> questions) {
-		this.questions = questions;
+	public void setQuestions(List<QuestionBean> questionBeans) {
+		this.questionBeans = questionBeans;
 	}
 	
 }

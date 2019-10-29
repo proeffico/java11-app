@@ -1,44 +1,50 @@
-package com.springboot.ibiza.surveyapp.domainJPA;
+package com.springboot.ibiza.surveyapp.jpa.beans;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Question {
+@Table(name = "question")
+public class QuestionBean {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id")
 	private Long questionId;
 	
+	@Column(name="question")
 	private String question;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
-	@JoinColumn(name="questionaryId")
-	private Questionary questionary;
+	@JoinColumn(name="fk_question_id")
+	private QuestionaryBean questionaryBean;
 	
-	public Question() {
+	public QuestionBean() {
 		super();
 	}
 
-	public Question(Long questionId, String question) {
+	public QuestionBean(Long questionId, String question) {
 		super();
 		this.questionId = questionId;
 		this.question = question;
 	}
 	
 
-	public Question(Long questionId, String question, Questionary questionary) {
+	public QuestionBean(Long questionId, String question, QuestionaryBean questionaryBean) {
 		super();
 		this.questionId = questionId;
 		this.question = question;
-		this.questionary = questionary;
+		this.questionaryBean = questionaryBean;
 	}
 
 	public Long getQuestionId() {

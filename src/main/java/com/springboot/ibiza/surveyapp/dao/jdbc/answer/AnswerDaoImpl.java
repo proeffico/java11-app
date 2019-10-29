@@ -1,4 +1,4 @@
-package com.springboot.ibiza.surveyapp.dao.answerDAO;
+package com.springboot.ibiza.surveyapp.dao.jdbc.answer;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.springboot.ibiza.surveyapp.domain.AnswerDomain;
+import com.springboot.ibiza.surveyapp.jdbc.beans.AnswerBean;
 
 @Repository
 public class AnswerDaoImpl implements AnswerDao {
@@ -18,21 +18,21 @@ public class AnswerDaoImpl implements AnswerDao {
 	
 	
 	@Override
-	public boolean isAnswerExist(AnswerDomain answer) {
+	public boolean isAnswerExist(AnswerBean answer) {
 		return false;
 	}
 
 	@Override
-	public int insertNewAnswer(List<AnswerDomain> answers) {
+	public int insertNewAnswer(List<AnswerBean> answers) {
 		return 0;
 	}
 
 	@Override
-	public List<AnswerDomain> findAllAnswers() {
-		String sql = "SELECT * FROM answers";
-		RowMapper<AnswerDomain> rm = new AnswerRowMapper();
+	public List<AnswerBean> findAllAnswers() {
+		String sql = "SELECT * FROM answer";
+		RowMapper<AnswerBean> rm = new AnswerRowMapper();
 		try {
-			List<AnswerDomain> list = jdbcTemplate.query(sql, rm);
+			List<AnswerBean> list = jdbcTemplate.query(sql, rm);
 			return (list != null && list.size() > 0)? list : null;
 		} catch (DataAccessException e) {
 			e.printStackTrace();

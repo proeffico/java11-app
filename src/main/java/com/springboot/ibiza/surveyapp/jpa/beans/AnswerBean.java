@@ -1,24 +1,29 @@
-package com.springboot.ibiza.surveyapp.domainJPA;
+package com.springboot.ibiza.surveyapp.jpa.beans;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Answer {
+@Table(name = "answer")
+public class AnswerBean {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id", nullable=false)
 	private int aswerId;
 	
+	@Column(name="answer", nullable=false)
 	private String answer;
 	
-	public Answer() {
+	public AnswerBean() {
 		super();
 	}
 
-	public Answer(int aswerId, String answer) {
+	public AnswerBean(int aswerId, String answer) {
 		super();
 		this.aswerId = aswerId;
 		this.answer = answer;

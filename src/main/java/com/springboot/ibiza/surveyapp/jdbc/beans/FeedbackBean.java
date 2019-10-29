@@ -1,17 +1,17 @@
-package com.springboot.ibiza.surveyapp.domain;
+package com.springboot.ibiza.surveyapp.jdbc.beans;
 
 /* This is object, that map answer and question */
-public class FeedbackDomain {
+public class FeedbackBean {
 	private int feedbackId;
-	private AnswerDomain answer;
-	private QuestionDomain question;
+	private AnswerBean answer;
+	private QuestionBean question;
 
-	public FeedbackDomain() {
+	public FeedbackBean() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public FeedbackDomain(int feedbackId, AnswerDomain answer, QuestionDomain question) {
+	public FeedbackBean(int feedbackId, AnswerBean answer, QuestionBean question) {
 		super();
 		this.feedbackId = feedbackId;
 		this.answer = answer;
@@ -26,19 +26,19 @@ public class FeedbackDomain {
 		this.feedbackId = feedbackId;
 	}
 
-	public AnswerDomain getAnswer() {
+	public AnswerBean getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(AnswerDomain answer) {
+	public void setAnswer(AnswerBean answer) {
 		this.answer = answer;
 	}
 
-	public QuestionDomain getQuestion() {
+	public QuestionBean getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(QuestionDomain question) {
+	public void setQuestion(QuestionBean question) {
 		this.question = question;
 	}
 
