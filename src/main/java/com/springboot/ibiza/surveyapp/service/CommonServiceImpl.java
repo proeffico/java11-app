@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.springboot.ibiza.surveyapp.jpa.beans.AnswerBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
+import com.springboot.ibiza.surveyapp.jpa.beans.QuestionTypeBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
 import com.springboot.ibiza.surveyapp.repositories.AnswerRepository;
 import com.springboot.ibiza.surveyapp.repositories.QuestionRepository;
+import com.springboot.ibiza.surveyapp.repositories.QuestionTypeRepository;
 import com.springboot.ibiza.surveyapp.repositories.QuestionaryRepository;
 
 @Service
@@ -23,6 +25,9 @@ public class CommonServiceImpl implements CommonService {
 	
 	@Autowired
 	private QuestionaryRepository questionaryRepo;
+	
+	@Autowired
+	private QuestionTypeRepository questionTypeRepo;
 	
 	@Override
 	public List<AnswerBean> findAllAnswers() {
@@ -54,9 +59,13 @@ public class CommonServiceImpl implements CommonService {
 		return null;
 	}
 
-	
 	public QuestionaryBean findQuestionaryById(Long id) {
 		return questionaryRepo.findByQuestionaryId(id);
+	}
+
+	@Override
+	public List<QuestionTypeBean> findAllQuestionTypes() {
+		return questionTypeRepo.findAll();
 	}
 
 }

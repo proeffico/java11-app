@@ -16,12 +16,47 @@
    <form>
 	  <div class="form-row">
 	    <div class="col">
-	      <input type="text" class="form-control" placeholder="First name">
-	    </div>
-	    <div class="col">
-	      <input type="text" class="form-control" placeholder="Last name">
+	      <div class="input-group mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroup-sizing-default">Kyselyn nimet</span>
+			  </div>
+			  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
 	    </div>
 	  </div>
+	  <div class="form-row">
+	    <div class="col">
+	      <div class="input-group mb-3">
+			  <div class="input-group-prepend">
+			    <span class="input-group-text" id="inputGroup-sizing-default">Kysymys 1</span>
+			  </div>
+			  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			</div>
+	    </div>
+	    <div class="col">
+	      <div class="input-group mb-3">
+			  <div class="input-group-prepend">
+			    <label class="input-group-text" for="questionType">Kysymystyyppi</label>
+			  </div>
+			  <select class="custom-select" id="questionType">
+			       <option th:each="questionType, index : ${questionTypes}" th:value="${questionType.questionTypeId}" th:text="${questionType.type}"></option>
+			  </select>
+	      </div>
+	    </div> 
+	  </div>
+	  <!-- Add more question -->
+	  <div class="form-row">
+	     <div class="col">
+	         <button type="button" class="btn btn-outline-secondary">Lisä kysymys</button>
+	     </div>
+	  </div>
+	  <!-- Create survey button -->
+	  <div class="form-row text-center">
+	     <div class="col">
+	         <button type="submit" class="btn btn-outline-primary">Luo kysely</button>
+	     </div>
+	  </div>
+	  
 </form>
 </div>
 <script src="../../jquery/jquery.min.js" th:src="@{/jquery/jquery.min.js}"></script>

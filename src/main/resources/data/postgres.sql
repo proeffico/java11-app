@@ -10,6 +10,12 @@ CREATE TABLE questionary(
    name text NOT NULL
 );
 
+-- create table question_type
+CREATE TABLE question_type(
+   question_type_id serial PRIMARY KEY,
+   type text NOT NULL
+);
+
 -- create table question
 CREATE TABLE question(
    question_id serial PRIMARY KEY,
@@ -18,7 +24,10 @@ CREATE TABLE question(
    CONSTRAINT question_fk_questionary_id FOREIGN KEY (fk_questionary_id) REFERENCES questionary (questionary_id)
 );
 
+
+
 -- insert testing data
 INSERT INTO answer (answer) VALUES ('Kyllä'), ('Ei'), ('Ei koske minua');
+INSERT INTO question_type (type) VALUES ('Avoin palaute'), ('Suosittelukysymys'), ('Monivalintakysymys');
 INSERT INTO question (question, fk_questionary_id) VALUES ('Question 1', 1), ('Question 2', 1), ('Question 3',1);
 INSERT INTO questionary(name) VALUES ('Kysely 1'), ('Kysely 2'), ('Kysely 3');
