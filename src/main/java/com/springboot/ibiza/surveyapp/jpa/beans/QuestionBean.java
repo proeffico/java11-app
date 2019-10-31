@@ -62,5 +62,14 @@ public class QuestionBean {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+
+	public QuestionaryBean getQuestionaryBean() {
+		return questionaryBean;
+	}
+
+	public void setQuestionaryBean(QuestionaryBean questionaryBean) {
+		this.questionaryBean = questionaryBean;
+	}
+	
 	
 }

@@ -56,4 +56,11 @@ public class CommonServiceImpl implements CommonService {
 		return null;
 	}
 
+	
+	public QuestionaryBean findQuestionaryById(Long id) {
+		// TODO Auto-generated method stub
+		
+		return questionaryRepo.findByQuestionaryId(id);
+	}
+
 }
