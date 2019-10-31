@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
 import com.springboot.ibiza.surveyapp.service.CommonService;
@@ -25,24 +26,27 @@ public class HomeController {
     	return "home";
     }
 	
-	//ALL QUESTIONARIES
-	@RequestMapping("/questionaries")
+	/*LIST ALL QUESTIONARIES*/
+	@RequestMapping(value= "/questionaries", method = RequestMethod.GET)
 	public String getGuestionariesView(Model model) {
 		model.addAttribute("questionaries", service.findAllQuestionaries());
 		return "Questionaries";
 	}
-	//
-	@RequestMapping("/add/{id}")
+	/*INSERT A NEW QUESTIONARY*/
+	@RequestMapping(value= "/questionary", method = RequestMethod.POST)
+	public String addQuestionary(){
+		return null;
+	}
+	
+	@RequestMapping(value = "/add/{id}", method = RequestMethod.GET)
 	public String addQuestionToQuestionary(@PathVariable("id")Long id, Model model) {
 		QuestionBean questionObject = new QuestionBean();
 		questionObject.setQuestionaryBean(service.findQuestionaryById(id));
 		model.addAttribute("questionObject", questionObject);
-		
 		return "AddQuestion";
 	}
 	
-
-	@PostMapping("save_question")
+	@RequestMapping(value="save_question", method = RequestMethod.POST)
 	public String saveQuestion(QuestionBean questionObject) {
 		service.createQuestion(questionObject);
 		return "redirect: questionaries";

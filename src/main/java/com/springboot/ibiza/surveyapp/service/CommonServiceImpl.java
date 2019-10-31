@@ -46,20 +46,16 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public QuestionBean createQuestion(QuestionBean questionBean) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public AnswerBean createAnswer(AnswerBean answerBean) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	
 	public QuestionaryBean findQuestionaryById(Long id) {
-		// TODO Auto-generated method stub
-		
 		return questionaryRepo.findByQuestionaryId(id);
 	}
 

@@ -1,7 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>Ibiza Team</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+ </head>
 <body>
-<h1>Welcome to Ibiza Team's homepage</h1>
-Today is <label th:text="${#dates.format(standardDate, 'dd-MM-yyyy HH:mm')}"></label>
+<div class="container">
+   <div class="row">
+       <div class="col-sm text-center">
+           <h1>Welcome to <span class="badge badge-secondary">Ibiza Team's homepage</span></h1>
+           Today is <label th:text="${#dates.format(standardDate, 'dd-MM-yyyy HH:mm')}"></label>
+       </div>
+   </div>
+   <form>
+	  <div class="form-row">
+	    <div class="col">
+	      <input type="text" class="form-control" placeholder="First name">
+	    </div>
+	    <div class="col">
+	      <input type="text" class="form-control" placeholder="Last name">
+	    </div>
+	  </div>
+</form>
+</div>
+<script src="../../jquery/jquery.min.js" th:src="@{/jquery/jquery.min.js}"></script>
+<script src="../../poper/popper.min.js" th:src="@{/poper/popper.min.js}"></script>
+<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>

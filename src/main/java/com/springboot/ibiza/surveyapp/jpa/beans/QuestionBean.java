@@ -18,13 +18,17 @@ public class QuestionBean {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id")
+	@Column(name="question_id")
 	private Long questionId;
 	
 	@Column(name="question")
 	private String question;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	/*
+	 * FetchType.LAZY does not get related questionary when finding question
+	 * FetchType.EAGER get all related questionary when finding question
+	 */
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnore
 	@JoinColumn(name="fk_question_id")
 	private QuestionaryBean questionaryBean;

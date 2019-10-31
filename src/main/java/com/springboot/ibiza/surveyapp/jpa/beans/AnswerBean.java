@@ -13,7 +13,7 @@ public class AnswerBean {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id", nullable=false)
+	@Column(name="answer_id", nullable=false)
 	private int aswerId;
 	
 	@Column(name="answer", nullable=false)

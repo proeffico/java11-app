@@ -3,6 +3,7 @@ package com.springboot.ibiza.surveyapp.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 /*
  Cause we enable Spring Security for our application, so we have to configure it, 

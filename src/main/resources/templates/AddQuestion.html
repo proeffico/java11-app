@@ -6,7 +6,7 @@
 	
 </head>
 <body>
-	<form th:object="${questionObject}" th:action="@{save_question}" action="#" method="post">
+	    <form th:object="${questionObject}" th:action="@{save_question}" action="#" method="post">
 		  	<label for="questionText">Question</label>
 			<input type="text" id="questionText" th:field="*{question}" class="form-control"/>
 			

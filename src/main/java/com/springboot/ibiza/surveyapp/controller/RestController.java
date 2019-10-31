@@ -57,6 +57,7 @@ public class RestController {
 		return service.findAllQuestionaries();
 	}
 	
+	
 	//REST SERVICE USING ID
 /*	@RequestMapping(value="/questions/{id}", method = RequestMethod.GET)
 	public @ResponseBody Optional<QuestionBean> findQuestionRest(@PathVariable("questionId")Long id) {
