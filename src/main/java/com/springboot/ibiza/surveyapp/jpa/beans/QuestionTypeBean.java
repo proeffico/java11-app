@@ -1,10 +1,14 @@
 package com.springboot.ibiza.surveyapp.jpa.beans;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +21,10 @@ public class QuestionTypeBean {
 	
 	@Column(name="type", nullable=false)	
     private String type;
+	
+	@OneToMany
+	@JoinColumn(name="fk_question_type_id")
+	private List<QuestionBean> questions;
 
 	public QuestionTypeBean() {
 		super();
@@ -48,5 +56,16 @@ public class QuestionTypeBean {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+
+	public List<QuestionBean> getQuestions() {
+		return questions;
+	}
+
+
+	public void setQuestions(List<QuestionBean> questions) {
+		this.questions = questions;
+	}
+	
 	
 }

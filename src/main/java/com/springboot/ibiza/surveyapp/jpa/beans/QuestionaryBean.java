@@ -26,8 +26,13 @@ public class QuestionaryBean {
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	@JoinColumn(name="fk_question_id")
+	@JoinColumn(name="fk_questionary_id")
 	private List<QuestionBean> questionBeans;
+	
+/*	@Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_at", nullable = false, updatable = false)
+    @CreatedDate
+    private Date createdAt; */
 	
 	public QuestionaryBean() {
 		super();

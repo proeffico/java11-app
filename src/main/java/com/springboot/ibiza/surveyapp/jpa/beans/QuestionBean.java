@@ -23,15 +23,20 @@ public class QuestionBean {
 	
 	@Column(name="question")
 	private String question;
-	
+		
 	/*
 	 * FetchType.LAZY does not get related questionary when finding question
 	 * FetchType.EAGER get all related questionary when finding question
 	 */
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JsonIgnore
-	@JoinColumn(name="fk_question_id")
+	@JoinColumn(name="fk_questionary_id")
 	private QuestionaryBean questionaryBean;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
+	@JoinColumn(name="fk_question_type_id")
+	private QuestionTypeBean questionType;
 	
 	public QuestionBean() {
 		super();
@@ -74,6 +79,13 @@ public class QuestionBean {
 	public void setQuestionaryBean(QuestionaryBean questionaryBean) {
 		this.questionaryBean = questionaryBean;
 	}
-	
+
+	public QuestionTypeBean getQuestionType() {
+		return questionType;
+	}
+
+	public void setQuestionType(QuestionTypeBean questionType) {
+		this.questionType = questionType;
+	}
 	
 }
