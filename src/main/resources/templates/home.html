@@ -4,6 +4,8 @@
    <title>Ibiza Team</title>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="../../open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet" th:href="@{/open-iconic/font/css/open-iconic-bootstrap.css}" />
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
  </head>
 <body>
 <div class="container">
@@ -20,25 +22,42 @@
 			  <div class="input-group-prepend">
 			    <span class="input-group-text" id="inputGroup-sizing-default">Kyselyn nimet</span>
 			  </div>
-			  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			  <input type="text" id="questionaryName" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 	    </div>
 	  </div>
+	  <!-- Show added questions -->
+	  <div class="form-row">
+	    <div class="col">
+	    <table class="table table-bordered">
+		  <thead>
+		    <tr>
+		      <th scope="col" class="text-center">#</th>
+		      <th colspan="3" class="text-center">Question</th>
+		      <th scope="col" class="text-center">Type</th>
+		      <th scope="col" class="text-center">Action</th>
+		    </tr>
+		  </thead>
+		  <tbody id="questionListTbody">
+		  </tbody>
+		</table>
+	    </div>
+	  </div>  
 	  <div class="form-row">
 	    <div class="col">
 	      <div class="input-group mb-3">
 			  <div class="input-group-prepend">
-			    <span class="input-group-text" id="inputGroup-sizing-default">Kysymys 1</span>
+			    <span class="input-group-text" id="inputGroup-sizing-default">Kysymys</span>
 			  </div>
-			  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+			  <input type="text" id="questionInput" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
 			</div>
 	    </div>
 	    <div class="col">
 	      <div class="input-group mb-3">
 			  <div class="input-group-prepend">
-			    <label class="input-group-text" for="questionType">Kysymystyyppi</label>
+			    <label class="input-group-text" for="questionTypeSelect">Kysymystyyppi</label>
 			  </div>
-			  <select class="custom-select" id="questionType">
+			  <select class="custom-select" id="questionTypeSelect">
 			       <option th:each="questionType, index : ${questionTypes}" th:value="${questionType.questionTypeId}" th:text="${questionType.type}"></option>
 			  </select>
 	      </div>
@@ -47,20 +66,38 @@
 	  <!-- Add more question -->
 	  <div class="form-row">
 	     <div class="col">
-	         <button type="button" class="btn btn-outline-secondary">Lisä kysymys</button>
+	         <button type="button" class="btn btn-outline-secondary" id="addBtn">Lisä kysymys</button>
 	     </div>
 	  </div>
 	  <!-- Create survey button -->
 	  <div class="form-row text-center">
 	     <div class="col">
-	         <button type="submit" class="btn btn-outline-primary">Luo kysely</button>
+	         <button type="button" class="btn btn-outline-primary" id="createBtn">Luo kysely</button>
 	     </div>
 	  </div>
-	  
 </form>
 </div>
-<script src="../../jquery/jquery.min.js" th:src="@{/jquery/jquery.min.js}"></script>
+<div class="modal fade" id="thankModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Kiitos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Sinun kysely onnistuu tallenta tietokantaan!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="../../jquery/jquery-3.3.1.min.js" th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
 <script src="../../poper/popper.min.js" th:src="@{/poper/popper.min.js}"></script>
-<script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../../bootstrap/bootstrap.min.js" th:src="@{/bootstrap/bootstrap.min.js}"></script>
+<script src="../../js/home.js" th:src="@{/js/home.js}"></script>
 </body>
 </html>

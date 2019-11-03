@@ -35,5 +35,5 @@ CREATE TABLE question (
 );
  
 INSERT INTO question (question, fk_question_type_id, fk_questionary_id) VALUES ('Question 1', 1, 2), ('Question 2', 1, 3), ('Question 2', 1, 2), ('Question 2', 1, 1), ('Question 3', 2, 3);
-
+INSERT INTO question (question, fk_question_type_id, fk_questionary_id) VALUES ('Question 1', 1, 1), ('Question 1', 2, 1), ('Question 1', 3, 1);
 SELECT * FROM question;

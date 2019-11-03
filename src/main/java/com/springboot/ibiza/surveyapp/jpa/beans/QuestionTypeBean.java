@@ -14,6 +14,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name="question_type")
 public class QuestionTypeBean {
+	/*
+	 * GenerationType.AUTO - that simply lets an implementation choose what it wants to use.
+	 * GenerationType.IDENTITY - (as per JPA javadocs and spec - what you should be referring to) means autoincrement. 
+	 * There is no such concept in Oracle, yet there is in MySQL, SQLServer and a few others. I would expect 
+	 * any decent JPA implementation to flag an error when even trying such a thing.
+	 */
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="question_type_id", nullable=false)	
