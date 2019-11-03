@@ -1,0 +1,7 @@
+table.table.table-bordered {
+	display: none;
+}
+
+span.oi {
+	cursor: pointer;
+}

@@ -3,7 +3,6 @@ package com.springboot.ibiza.surveyapp.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 /*
  Cause we enable Spring Security for our application, so we have to configure it, 
@@ -19,12 +18,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		httpSecurity.authorizeRequests().antMatchers("/").permitAll().and()
 		/*Allow all requests to the H2 database console url (“/h2/*”) */
 		            .authorizeRequests().antMatchers("/h2/**").permitAll().and()
-		            .authorizeRequests().antMatchers("/api/v1/**").permitAll();
-		
+		            .authorizeRequests().antMatchers("/api/v1/**").permitAll()
+		            ;
 		
 		/*Disable CSRF protection*/
 		httpSecurity.csrf().disable();
 		/*Disable X-Frame-Options in Spring Security*/
 		httpSecurity.headers().frameOptions().disable();
+		/*Disable headers*/
+		httpSecurity.headers().disable();
     }
 }

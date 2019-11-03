@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class QuestionBean {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="question_id")
 	private Long questionId;
 	
@@ -28,7 +28,7 @@ public class QuestionBean {
 	 * FetchType.LAZY does not get related questionary when finding question
 	 * FetchType.EAGER get all related questionary when finding question
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne()
 	@JsonIgnore
 	@JoinColumn(name="fk_questionary_id")
 	private QuestionaryBean questionaryBean;

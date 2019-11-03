@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class QuestionaryBean {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="questionary_id")
 	private Long questionaryId;
 	
@@ -27,7 +27,7 @@ public class QuestionaryBean {
 	
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
 	@JoinColumn(name="fk_questionary_id")
-	private List<QuestionBean> questionBeans;
+	private List<QuestionBean> questions;
 	
 /*	@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -61,11 +61,13 @@ public class QuestionaryBean {
 	}
 
 	public List<QuestionBean> getQuestions() {
-		return questionBeans;
+		return questions;
 	}
 
-	public void setQuestions(List<QuestionBean> questionBeans) {
-		this.questionBeans = questionBeans;
+	public void setQuestions(List<QuestionBean> questions) {
+		this.questions = questions;
 	}
+
+
 	
 }
