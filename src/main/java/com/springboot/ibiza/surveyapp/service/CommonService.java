@@ -6,6 +6,7 @@ import com.springboot.ibiza.surveyapp.jpa.beans.AnswerBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionTypeBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
+import com.springboot.ibiza.surveyapp.jpa.beans.UserBean;
 
 public interface CommonService {
    public List<AnswerBean> findAllAnswers();
@@ -17,4 +18,5 @@ public interface CommonService {
    public QuestionBean createQuestion(QuestionBean questionBean);
    public AnswerBean createAnswer(AnswerBean answerBean);
    public QuestionaryBean findQuestionaryById(Long id);
+   public UserBean createUser(UserBean user);
 }

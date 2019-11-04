@@ -52,7 +52,7 @@ $("#createBtn").click(function(){
 			$("#thankModal").modal("show");
 		},
 		error: function(xhr, msg){
-			alert(msg+": "+xhr.statusCode);
+			alert(msg+": "+xhr.status);
 		}
 	});
 });

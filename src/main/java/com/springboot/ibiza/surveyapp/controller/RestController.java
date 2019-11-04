@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.springboot.ibiza.surveyapp.jpa.beans.AnswerBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
+import com.springboot.ibiza.surveyapp.jpa.beans.UserBean;
 import com.springboot.ibiza.surveyapp.service.CommonService;
 
 @Controller
@@ -55,7 +56,11 @@ public class RestController {
 	/* REST API FOR ::QUESTIONARY:: OBJECT */
 	@RequestMapping(value="/questionary", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<QuestionaryBean> createQuestionary(@Valid @RequestBody QuestionaryBean questionaryBean) throws URISyntaxException {
-		logger.info("Starting create a new questionary: "+questionaryBean);
+		logger.info("Start creating a new questionary: "+questionaryBean);
+		UserBean user = service.createUser(new UserBean());
+		logger.info("UserId: "+user.getUserId()+" has been created!");
+
+		questionaryBean.setUser(user);
 		QuestionaryBean result = service.createQuestionary(questionaryBean);
 		return ResponseEntity.created(new URI("/api/v1/questionaries/questionary/" + result.getQuestionaryId()))
 	            .body(result);

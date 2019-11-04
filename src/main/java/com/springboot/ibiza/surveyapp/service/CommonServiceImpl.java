@@ -9,10 +9,12 @@ import com.springboot.ibiza.surveyapp.jpa.beans.AnswerBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionTypeBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
+import com.springboot.ibiza.surveyapp.jpa.beans.UserBean;
 import com.springboot.ibiza.surveyapp.repositories.AnswerRepository;
 import com.springboot.ibiza.surveyapp.repositories.QuestionRepository;
 import com.springboot.ibiza.surveyapp.repositories.QuestionTypeRepository;
 import com.springboot.ibiza.surveyapp.repositories.QuestionaryRepository;
+import com.springboot.ibiza.surveyapp.repositories.UserRepository;
 
 @Service
 public class CommonServiceImpl implements CommonService {
@@ -28,6 +30,9 @@ public class CommonServiceImpl implements CommonService {
 	
 	@Autowired
 	private QuestionTypeRepository questionTypeRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 	
 	@Override
 	public List<AnswerBean> findAllAnswers() {
@@ -66,6 +71,11 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public List<QuestionTypeBean> findAllQuestionTypes() {
 		return questionTypeRepo.findAll();
+	}
+
+	@Override
+	public UserBean createUser(UserBean user) {
+		return userRepo.save(user);
 	}
 
 }

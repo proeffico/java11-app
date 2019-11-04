@@ -42,7 +42,7 @@ public class QuestionaryBean {
     @CreatedDate
     private Date createdDate;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	@JoinColumn(name="fk_user_id")
 	private UserBean user;
