@@ -2,6 +2,7 @@ package com.springboot.ibiza.surveyapp.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,12 +46,20 @@ public class HomeController {
 		QuestionBean questionObject = new QuestionBean();
 		questionObject.setQuestionaryBean(service.findQuestionaryById(Long.parseLong(idStr)));
 		model.addAttribute("questionObject", questionObject);
+		
 		return "AddQuestion";
 	}
 	
 	@RequestMapping(value="/save_question", method = RequestMethod.POST)
 	public String saveQuestion(QuestionBean questionObject) {
+		
+		//QuestionaryBean questionary = questionObject.getQuestionaryBean();
+		//List<QuestionBean> questionList = questionary.getQuestions();
+		//questionList.add(questionObject);
+		//questionary.setQuestions(questionList);
+		//service.createQuestion(questionObject);
 		service.createQuestion(questionObject);
+		
 		return "redirect:questionaries";
 	}
 		

@@ -13,9 +13,28 @@
 	           <h1>Questionaries</h1>
 	       </div>
   		</div>
+  		<form>
+  		<div class="form-row">
+	  		<div class="input-group mb-3">
+	  			<div class="input-group-prepend">
+				    <label class="input-group-text" for="questionarySelect">Valitse kysely</label>
+				 </div>
+	  			<select class="custom-select" id="questionarySelect">
+				       <option 
+				       		th:each="questionary, index : ${questionaries}" 
+				       		th:value="${questionary.questionaryId}" 
+				       		th:text="${questionary.name}">
+				       	</option>
+				  </select>
+				  <button type="button" class="btn btn-outline-secondary" id="addQuestionBtn">Lisää kysymys</button>
+			</div>
+	  	</div>
+  		</form>
 	</div>
-	
-	
+  
+  
+  
+  <!-- tämä alla oleva toimii -->
 	<table>
 		<thead>
 			<tr>
@@ -23,7 +42,7 @@
 			</tr>
 		</thead>
 		
-		<!-- tee dropdown list -->
+	 
 		<tr th:each="questionary: ${questionaries}">
 			<td th:text="${questionary.name}"></td>
 			<td><a th:href="@{/add/{id}(id=${questionary.questionaryId})}" class="btn btn-primary">Add Question</a> </td>
@@ -31,5 +50,6 @@
 		</tr>
 		
 	</table>
+
 </body>
 </html>

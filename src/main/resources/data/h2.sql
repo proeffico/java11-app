@@ -20,7 +20,7 @@ SELECT * FROM question_type;
 -- 3. create table questionary
 DROP TABLE IF EXISTS questionary;
 CREATE TABLE questionary (questionary_id INT AUTO_INCREMENT  PRIMARY KEY, name TEXT NOT NULL);
-INSERT INTO questionary (name) VALUES ('Kysely 1'), ('Kysely 2'), ('Kysely 2');
+INSERT INTO questionary (name) VALUES ('Kysely 1'), ('Kysely 2'), ('Kysely 3');
 
 
 -- 4. create table question 
