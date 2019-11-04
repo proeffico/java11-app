@@ -51,7 +51,7 @@ public class CommonServiceImpl implements CommonService {
 
 	@Override
 	public QuestionBean createQuestion(QuestionBean questionBean) {
-		return null;
+		return questionRepo.save(questionBean);
 	}
 
 	@Override

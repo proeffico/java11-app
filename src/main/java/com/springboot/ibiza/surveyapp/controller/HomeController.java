@@ -1,5 +1,6 @@
 package com.springboot.ibiza.surveyapp.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
+import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
 import com.springboot.ibiza.surveyapp.service.CommonService;
 
 @Controller
@@ -30,6 +32,8 @@ public class HomeController {
 	@RequestMapping(value= "/questionaries", method = RequestMethod.GET)
 	public String getGuestionariesView(Model model) {
 		model.addAttribute("questionaries", service.findAllQuestionaries());
+	
+		
 		return "Questionaries";
 	}
 	/*INSERT A NEW QUESTIONARY*/
@@ -39,17 +43,17 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/add/{id}", method = RequestMethod.GET)
-	public String addQuestionToQuestionary(@PathVariable("id")Long id, Model model) {
+	public String addQuestionToQuestionary(@PathVariable("id")String idStr, Model model) {
 		QuestionBean questionObject = new QuestionBean();
-		questionObject.setQuestionaryBean(service.findQuestionaryById(id));
+		questionObject.setQuestionaryBean(service.findQuestionaryById(Long.parseLong(idStr)));
 		model.addAttribute("questionObject", questionObject);
 		return "AddQuestion";
 	}
 	
-	@RequestMapping(value="save_question", method = RequestMethod.POST)
+	@RequestMapping(value="/save_question", method = RequestMethod.POST)
 	public String saveQuestion(QuestionBean questionObject) {
 		service.createQuestion(questionObject);
-		return "redirect: questionaries";
+		return "redirect:questionaries";
 	}
 		
 	

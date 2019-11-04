@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS question_type;
  
 CREATE TABLE question_type (question_type_id INT AUTO_INCREMENT PRIMARY KEY, type TEXT NOT NULL);
  
-INSERT INTO question_type (type) VALUES ('Monivalintakysymys'), ('Suosittelukysymys'), ('Avoin palaute kysymys');
+INSERT INTO question_type (type) VALUES ('Monivalintakysymys'), ('Suosittelukysymys'), ('Avoin kysymys');
 
 SELECT * FROM question_type;
 

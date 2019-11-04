@@ -6,7 +6,9 @@
 	
 </head>
 <body>
-	    <form th:object="${questionObject}" th:action="@{save_question}" action="#" method="post">
+
+<!-- täällä pitää näkyä avattu kysely kokonaisuudessaan ja sitten pystyä lisäämään kysymys -->
+	    <form th:object="${questionObject}" th:action="@{/save_question}" method="post">
 		  	<label for="questionText">Question</label>
 			<input type="text" id="questionText" th:field="*{question}" class="form-control"/>
 			
