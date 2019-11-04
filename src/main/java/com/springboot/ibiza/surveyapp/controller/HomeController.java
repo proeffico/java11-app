@@ -32,8 +32,6 @@ public class HomeController {
 	@RequestMapping(value= "/questionaries", method = RequestMethod.GET)
 	public String getGuestionariesView(Model model) {
 		model.addAttribute("questionaries", service.findAllQuestionaries());
-	
-		
 		return "Questionaries";
 	}
 	/*INSERT A NEW QUESTIONARY*/
