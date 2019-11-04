@@ -19,10 +19,40 @@ $( document ).on("click", "span.oi.oi-circle-x", function(){
 	$(data).remove();
 });
 
+var questionaryId = 0;
 $("#thankModal").on("hidden.bs.modal", function(){
-	location.reload();
+	location.href += "questionaries/questionary/"+questionaryId;
 });
 
 $("#createBtn").click(function(){
-	$("#thankModal").modal("show");
+	var requestObj = new Object();
+	var questionArr = new Array();
+	var name = $("#questionaryName").val();
+	$("td.questionTd").each(function(){
+		var questionObj = new Object(), questionType = new Object();
+		questionObj.question = $(this).text();
+		questionType.questionTypeId = parseInt($(this).attr("data"));
+		questionObj.questionType = questionType;
+		questionArr.push(questionObj);
+	});
+	requestObj = {
+		name: name,
+		questions: questionArr
+	};
+	console.log(JSON.stringify(requestObj));
+	$.ajax({
+		beforeSend: function(req){
+			req.setRequestHeader("Content-Type", "application/json");
+		},
+		type: "POST",
+		url: window.location.href + "api/v1/questionary",
+		data: JSON.stringify(requestObj),
+		success: function(data){
+			questionaryId = data.questionaryId;
+			$("#thankModal").modal("show");
+		},
+		error: function(xhr, msg){
+			alert(msg+": "+xhr.statusCode);
+		}
+	});
 });

@@ -96,7 +96,4 @@ public class RestController {
 		return "AddQuestion";
 	}*/
 	
-
-	
-	
 }

@@ -3,15 +3,48 @@
 <head>
 	<title>index</title>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
-	
+	<link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
 </head>
 <body>
-	    <form th:object="${questionObject}" th:action="@{save_question}" action="#" method="post">
-		  	<label for="questionText">Question</label>
-			<input type="text" id="questionText" th:field="*{question}" class="form-control"/>
+
+<!-- täällä pitää näkyä avattu kysely kokonaisuudessaan ja sitten pystyä lisäämään kysymys -->
+		<div class="container">
+			<div class="text-center">
+				<!-- <h1 th:text="${questionary.name}"></h1> -->
+				<h1 >Olet muokkaamassa <span class="badge badge-secondary" th:text="${questionary.name}"></span> kyselyä</h1>
+			</div>
+		
+		
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th  class="text-center">Kysymykset</th>
+				    <th class="text-center">Tyyppi</th>
+		      	</tr>
+			</thead>
 			
-									
-		  	<input type="submit" class="btn btn-primary" value="Save"></input>
+			<tbody id="tbody">
+				<tr th:each="question: ${questionsOfQuestionary}">
+					<td class="text-center" th:text="${question.question}"></td>
+					<td class="text-center" th:text="${question.questionType.type}"></td>
+				</tr>
+			</tbody>		 
+			
+		</table>
+		
+		
+		
+	    <form th:object="${questionObject}" th:action="@{/save_question}" method="post">
+	    	<!-- <h1 th:text="*{questionaryBean}"></h1> -->
+		  	<label for="questionText">Uusi kysymys</label>
+		  	<input type="hidden" th:field="*{questionaryBean}" th:value="${questionary}" class="form-control"/>
+			<input type="text" id="questionText" th:field="*{question}" class="form-control"/>
+			<select th:field="*{questionType}" class="custom-select" id="questionTypeSelect">
+			      <option th:each="questionType, index : ${questionTypes}" th:value="${questionType.questionTypeId}" th:text="${questionType.type}"></option>
+			</select>
+			<input type="submit" class="btn btn-primary" value="Tallenna"></input>
 		</form>
+		
+		</div>
 </body>
 </html>
