@@ -1,5 +1,6 @@
 package com.springboot.ibiza.surveyapp.jpa.beans;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,8 +11,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.data.annotation.CreatedDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "questionary")
@@ -29,10 +37,15 @@ public class QuestionaryBean {
 	@JoinColumn(name="fk_questionary_id")
 	private List<QuestionBean> questions;
 	
-/*	@Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "created_at", nullable = false, updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "created_date", nullable = false, updatable = false)
     @CreatedDate
-    private Date createdAt; */
+    private Date createdDate;
+	
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name="fk_user_id")
+	private UserBean user;
 	
 	public QuestionaryBean() {
 		super();
@@ -68,6 +81,22 @@ public class QuestionaryBean {
 		this.questions = questions;
 	}
 
+	public Date getCreatedDate() {
+		return createdDate;
+	}
 
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = new Date();
+	}
+
+	public UserBean getUser() {
+		return user;
+	}
+
+	public void setUser(UserBean user) {
+		this.user = user;
+	}
+	
+	
 	
 }

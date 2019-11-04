@@ -19,8 +19,9 @@ $( document ).on("click", "span.oi.oi-circle-x", function(){
 	$(data).remove();
 });
 
+var questionaryId = 0;
 $("#thankModal").on("hidden.bs.modal", function(){
-	location.reload();
+	location.href += "questionaries/questionary/"+questionaryId;
 });
 
 $("#createBtn").click(function(){
@@ -46,7 +47,8 @@ $("#createBtn").click(function(){
 		type: "POST",
 		url: window.location.href + "api/v1/questionary",
 		data: JSON.stringify(requestObj),
-		success: function(){
+		success: function(data){
+			questionaryId = data.questionaryId;
 			$("#thankModal").modal("show");
 		},
 		error: function(xhr, msg){

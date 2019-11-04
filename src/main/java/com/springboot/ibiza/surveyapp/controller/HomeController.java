@@ -1,9 +1,8 @@
 package com.springboot.ibiza.surveyapp.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +17,7 @@ import com.springboot.ibiza.surveyapp.service.CommonService;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+	Logger logger = Logger.getLogger(HomeController.class);
 	
 	@Autowired
 	private CommonService service;
@@ -35,6 +35,14 @@ public class HomeController {
 		model.addAttribute("questionaries", service.findAllQuestionaries());
 		return "Questionaries";
 	}
+	/*QUESTIONARY'S INFO*/
+	@RequestMapping(value="/questionaries/questionary/{id}", method = RequestMethod.GET)
+	public String getQuestionaryInfo(@PathVariable("id") String idStr, Model model){
+		logger.info("Start searching questionary from database..."+ idStr);
+		model.addAttribute("questionaryObj", service.findQuestionaryById(Long.parseLong(idStr)));
+		return "questionary-info";
+	}
+	
 	/*INSERT A NEW QUESTIONARY*/
 	@RequestMapping(value= "/questionary", method = RequestMethod.POST)
 	public String addQuestionary(){
@@ -42,7 +50,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/add/{id}", method = RequestMethod.GET)
-	public String addQuestionToQuestionary(@PathVariable("id")String idStr, Model model) {
+	public String addQuestionToQuestionary(@PathVariable("id") String idStr, Model model) {
 		QuestionBean questionObject = new QuestionBean();
 		QuestionaryBean questionary = service.findQuestionaryById(Long.parseLong(idStr));
 		System.out.println(questionary);

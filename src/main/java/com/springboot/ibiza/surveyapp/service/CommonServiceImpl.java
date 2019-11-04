@@ -60,7 +60,7 @@ public class CommonServiceImpl implements CommonService {
 	}
 
 	public QuestionaryBean findQuestionaryById(Long id) {
-		return questionaryRepo.findByQuestionaryId(id);
+		return (questionaryRepo.findByQuestionaryId(id) != null)? questionaryRepo.findByQuestionaryId(id) : new QuestionaryBean();
 	}
 
 	@Override
