@@ -33,7 +33,7 @@ public class HomeController {
 	@RequestMapping(value= "/questionaries", method = RequestMethod.GET)
 	public String getGuestionariesView(Model model) {
 		model.addAttribute("questionaries", service.findAllQuestionaries());
-		return "Questionaries";
+		return "list-of-questionary";
 	}
 	/*QUESTIONARY'S INFO*/
 	@RequestMapping(value="/questionaries/questionary/{id}", method = RequestMethod.GET)
@@ -61,7 +61,7 @@ public class HomeController {
 		model.addAttribute("questionsOfQuestionary", questionary.getQuestions());
 		model.addAttribute("questionTypes", service.findAllQuestionTypes());
 		
-		return "AddQuestion";
+		return "questionary-setting";
 	}
 	
 	@RequestMapping(value="/save_question", method = RequestMethod.POST)

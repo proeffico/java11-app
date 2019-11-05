@@ -31,7 +31,7 @@ CREATE TABLE questionary(
    questionary_id integer NOT NULL DEFAULT nextval('questionary_id_seq') PRIMARY KEY,
    name text NOT NULL,
    created_date timestamp default now(),
-   fk_user_id serial,
+   fk_user_id integer,
    CONSTRAINT questionary_fk_user_id FOREIGN KEY (fk_user_id) REFERENCES "user" (user_id)
 );
 
@@ -47,8 +47,8 @@ CREATE SEQUENCE question_id_seq;
 CREATE TABLE question(
    question_id integer NOT NULL DEFAULT nextval('question_id_seq') PRIMARY KEY,
    question text NOT NULL,
-   fk_questionary_id serial,
-   fk_question_type_id serial,
+   fk_questionary_id integer,
+   fk_question_type_id integer,
    CONSTRAINT question_fk_questionary_id FOREIGN KEY (fk_questionary_id) REFERENCES questionary (questionary_id),
    CONSTRAINT question_fk_question_type_id FOREIGN KEY (fk_question_type_id) REFERENCES question_type (question_type_id)
 );
