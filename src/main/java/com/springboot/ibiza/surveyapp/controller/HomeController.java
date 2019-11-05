@@ -54,8 +54,6 @@ public class HomeController {
 		QuestionBean questionObject = new QuestionBean();
 		QuestionaryBean questionary = service.findQuestionaryById(Long.parseLong(idStr));
 		System.out.println(questionary);
-		questionObject.setQuestionaryBean(questionary);
-		System.out.println(questionObject.getQuestionaryBean());//setting the QuestionaryBean works
 		model.addAttribute("questionObject", questionObject);
 		model.addAttribute("questionary", questionary); 
 		model.addAttribute("questionsOfQuestionary", questionary.getQuestions());
@@ -71,7 +69,6 @@ public class HomeController {
 		//olen aikaisemmin setannut sen Questionbean olioon
 		//antaa metodeita kutsuttaessa null pointer exceptionii
 		System.out.println(questionObject.getQuestion());
-		System.out.println(questionObject.getQuestionaryBean());//tää antaa null vaikka se QuestionaryBean on setattu siihen QuestionBean olioon aikaisemmin
 		//QuestionaryBean questionary = questionObject.getQuestionaryBean();
 		//List<QuestionBean> questionList = questionary.getQuestions();
 		//questionList.add(questionObject);
