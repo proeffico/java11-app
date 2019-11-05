@@ -2,7 +2,6 @@ package com.springboot.ibiza.surveyapp.jpa.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,7 +12,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "question")
+@Table(name = "ibiza_question")
 public class QuestionBean {
 
 	@Id
@@ -27,15 +26,17 @@ public class QuestionBean {
 	/*
 	 * FetchType.LAZY does not get related questionary when finding question
 	 * FetchType.EAGER get all related questionary when finding question
+	 * use @JsonIgnore to prevent to take this data to JSON object
+	 * can use @JsonIgnoreProperties and @JsonIgnoreType to filter which data will be present in JSON object as well
+	 * be careful to use mappedBy inside OneToMany in multiple entities, because it could give the error Infinite Recursion with Jackson JSON and Hibernate JPA issue
 	 */
-	@ManyToOne()
 	@JsonIgnore
+	@ManyToOne
 	@JoinColumn(name="fk_questionary_id")
-	private QuestionaryBean questionaryBean;
+	private QuestionaryBean questionary;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JsonIgnore
-	@JoinColumn(name="fk_question_type_id")
+	@ManyToOne
+	@JoinColumn( name="fk_question_type_id")
 	private QuestionTypeBean questionType;
 	
 	public QuestionBean() {
@@ -47,13 +48,13 @@ public class QuestionBean {
 		this.questionId = questionId;
 		this.question = question;
 	}
-	
 
-	public QuestionBean(Long questionId, String question, QuestionaryBean questionaryBean) {
+	public QuestionBean(Long questionId, String question, QuestionaryBean questionary, QuestionTypeBean questionType) {
 		super();
 		this.questionId = questionId;
 		this.question = question;
-		this.questionaryBean = questionaryBean;
+		this.questionary = questionary;
+		this.questionType = questionType;
 	}
 
 	public Long getQuestionId() {
@@ -72,12 +73,13 @@ public class QuestionBean {
 		this.question = question;
 	}
 
-	public QuestionaryBean getQuestionaryBean() {
-		return questionaryBean;
+
+	public QuestionaryBean getQuestionary() {
+		return questionary;
 	}
 
-	public void setQuestionaryBean(QuestionaryBean questionaryBean) {
-		this.questionaryBean = questionaryBean;
+	public void setQuestionary(QuestionaryBean questionary) {
+		this.questionary = questionary;
 	}
 
 	public QuestionTypeBean getQuestionType() {

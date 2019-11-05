@@ -7,12 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name="question_type")
+@Table(name="ibiza_question_type")
 public class QuestionTypeBean {
 	/*
 	 * GenerationType.AUTO - that simply lets an implementation choose what it wants to use.
@@ -28,8 +29,8 @@ public class QuestionTypeBean {
 	@Column(name="type", nullable=false)	
     private String type;
 	
+	@JsonIgnore
 	@OneToMany
-	@JoinColumn(name="fk_question_type_id")
 	private List<QuestionBean> questions;
 
 	public QuestionTypeBean() {

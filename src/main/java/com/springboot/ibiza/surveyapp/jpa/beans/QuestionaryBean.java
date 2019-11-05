@@ -19,10 +19,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name = "questionary")
+@Table(name = "ibiza_questionary")
 public class QuestionaryBean {
 
 	@Id
@@ -33,8 +31,8 @@ public class QuestionaryBean {
 	@Column(name="name")
 	private String name;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	@JoinColumn(name="fk_questionary_id")
+	
+	@OneToMany(mappedBy = "questionary", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<QuestionBean> questions;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -42,8 +40,7 @@ public class QuestionaryBean {
     @CreatedDate
     private Date createdDate;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JsonIgnore
+	@ManyToOne
 	@JoinColumn(name="fk_user_id")
 	private UserBean user;
 	
