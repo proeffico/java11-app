@@ -12,7 +12,7 @@ SELECT * FROM ibiza_answer_option;
 -- create table ibiza_question_type
 DROP TABLE IF EXISTS ibiza_question_type;
  
-CREATE TABLE ibiza_question_type (question_type_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, type TEXT NOT NULL);
+CREATE TABLE ibiza_question_type (question_type_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, type TEXT);
  
 INSERT INTO ibiza_question_type (type) VALUES ('Monivalintakysymys'), ('Suosittelukysymys'), ('Avoin kysymys');
 

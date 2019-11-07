@@ -2,6 +2,7 @@ package com.springboot.ibiza.surveyapp.jpa.beans;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,12 +33,12 @@ public class QuestionBean {
 	@JoinColumn(name="fk_questionary_id")
 	private QuestionaryBean questionary;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonIgnoreProperties(value={"questions", "questionTypeId"})
 	@JoinColumn(name="fk_question_type_id")
 	private QuestionTypeBean questionType;
 	
-	@OneToMany(mappedBy="question")
+	@OneToMany(mappedBy="question", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<AnswerBean> answers;
 	
