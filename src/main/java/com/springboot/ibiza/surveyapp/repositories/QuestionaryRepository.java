@@ -10,5 +10,5 @@ import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
 @Repository
 public interface QuestionaryRepository extends JpaRepository<QuestionaryBean, Long>{
     List<QuestionaryBean> findAll();
-    QuestionaryBean findByQuestionaryId(Long id);
+    QuestionaryBean findByQuestionaryId(Long questionaryId);
 }

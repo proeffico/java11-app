@@ -19,4 +19,6 @@ public interface CommonService {
    public AnswerBean createAnswer(AnswerBean answerBean);
    public QuestionaryBean findQuestionaryById(Long id);
    public UserBean createUser(UserBean user);
+   
+   public List<QuestionBean> updateQuestionaryParentForQuestionsList(List<QuestionBean> questions, Long questionaryId);
 }

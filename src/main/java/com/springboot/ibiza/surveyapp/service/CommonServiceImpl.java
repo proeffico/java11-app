@@ -78,4 +78,14 @@ public class CommonServiceImpl implements CommonService {
 		return userRepo.save(user);
 	}
 
+	@Override
+	public List<QuestionBean> updateQuestionaryParentForQuestionsList(List<QuestionBean> questions, Long questionaryId) {
+		questions.forEach(question -> {
+			QuestionaryBean questionary = new QuestionaryBean();
+			questionary.setQuestionaryId(questionaryId);
+			question.setQuestionary(questionary);
+		});
+		return questionRepo.saveAll(questions);
+	}
+
 }

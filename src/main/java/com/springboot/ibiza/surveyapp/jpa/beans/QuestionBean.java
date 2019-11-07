@@ -1,5 +1,7 @@
 package com.springboot.ibiza.surveyapp.jpa.beans;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,9 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "ibiza_question")
@@ -22,41 +26,21 @@ public class QuestionBean {
 	
 	@Column(name="question")
 	private String question;
-		
-	/*
-	 * FetchType.LAZY does not get related questionary when finding question
-	 * FetchType.EAGER get all related questionary when finding question
-	 * use @JsonIgnore to prevent to take this data to JSON object
-	 * can use @JsonIgnoreProperties and @JsonIgnoreType to filter which data will be present in JSON object as well
-	 * be careful to use mappedBy inside OneToMany in multiple entities, because it could give the error Infinite Recursion with Jackson JSON and Hibernate JPA issue
-	 */
-	@JsonIgnore
+	
 	@ManyToOne
+	@JsonIgnoreProperties(value = {"questions", "user"})
 	@JoinColumn(name="fk_questionary_id")
 	private QuestionaryBean questionary;
 	
 	@ManyToOne
-	@JoinColumn( name="fk_question_type_id")
+	@JsonIgnoreProperties(value={"questions", "questionTypeId"})
+	@JoinColumn(name="fk_question_type_id")
 	private QuestionTypeBean questionType;
 	
-	public QuestionBean() {
-		super();
-	}
-
-	public QuestionBean(Long questionId, String question) {
-		super();
-		this.questionId = questionId;
-		this.question = question;
-	}
-
-	public QuestionBean(Long questionId, String question, QuestionaryBean questionary, QuestionTypeBean questionType) {
-		super();
-		this.questionId = questionId;
-		this.question = question;
-		this.questionary = questionary;
-		this.questionType = questionType;
-	}
-
+	@OneToMany(mappedBy="question")
+	@JsonIgnore
+	private List<AnswerBean> answers;
+	
 	public Long getQuestionId() {
 		return questionId;
 	}
@@ -89,5 +73,15 @@ public class QuestionBean {
 	public void setQuestionType(QuestionTypeBean questionType) {
 		this.questionType = questionType;
 	}
+
+	public List<AnswerBean> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<AnswerBean> answers) {
+		this.answers = answers;
+	}
+	
+	
 	
 }

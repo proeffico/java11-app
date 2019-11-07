@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +28,7 @@ public class UserBean {
 	@Column(name="email")
     private String email;
 	
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "user")
 	private List<QuestionaryBean> questionaries;
 
 	public Long getUserId() {
@@ -71,5 +70,7 @@ public class UserBean {
 	public void setQuestionaries(List<QuestionaryBean> questionaries) {
 		this.questionaries = questionaries;
 	}
+
+
 	
 }
