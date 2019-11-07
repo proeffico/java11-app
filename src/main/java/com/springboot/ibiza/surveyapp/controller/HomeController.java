@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.springboot.ibiza.surveyapp.config.IbizaConfiguration;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
 import com.springboot.ibiza.surveyapp.service.CommonService;
@@ -22,11 +23,33 @@ public class HomeController {
 	@Autowired
 	private CommonService service;
 	
+	@Autowired
+	private IbizaConfiguration ibizaConfig;
+	
 	@RequestMapping("")
-    public String getHomeView(Model model){
+    public String getHomePageView(Model model){
 		model.addAttribute("standardDate", new Date());
 		model.addAttribute("questionTypes", service.findAllQuestionTypes());
+		model.addAttribute("menus", ibizaConfig.getMenus());
     	return "home";
+    }
+	
+	@RequestMapping("restinfo")
+    public String getRestInfoPageView(Model model){
+		model.addAttribute("menus", ibizaConfig.getMenus());
+    	return "restinfo";
+    }
+	
+	@RequestMapping("documentation")
+    public String getDocumentationPageView(Model model){
+		model.addAttribute("menus", ibizaConfig.getMenus());
+    	return "documentation";
+    }
+	
+	@RequestMapping("about")
+    public String getAboutPageView(Model model){
+		model.addAttribute("menus", ibizaConfig.getMenus());
+    	return "about";
     }
 	
 	/*LIST ALL QUESTIONARIES*/

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+    <link href="../../open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet" th:href="@{/open-iconic/font/css/open-iconic-bootstrap.css}" />
+    <link href="../../css/style.css" rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+<title>About</title>
+</head>
+<body>
+<div class="container">
+   <div class="row">
+       <div class="col-sm mt-5">
+           <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-end">
+		       <ul class="navbar-nav" th:each="menu, iter : ${menus}">
+				  <li class="nav-item" th:if="${iter.count == 1}">
+				    <a class="nav-link" th:href="@{/}" th:text="${menu }"></a>
+				  </li>
+				  <li class="nav-item" th:if="${iter.count == 2}">
+				    <a class="nav-link" th:href="@{/restinfo}" th:text="${menu }"></a>
+				  </li>
+				  <li class="nav-item" th:if="${iter.count == 3}">
+				    <a class="nav-link" th:href="@{/documentation}" th:text="${menu }"></a>
+				  </li>
+				  <li class="nav-item active" th:if="${iter.count == 4}">
+				    <a class="nav-link" th:href="@{/about}" th:text="${menu }"></a>
+				  </li>
+				</ul>
+			</nav>
+       </div>
+   </div>
+</div> 
+<script src="../../jquery/jquery-3.3.1.min.js" th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
+<script src="../../poper/popper.min.js" th:src="@{/poper/popper.min.js}"></script>
+<script src="../../bootstrap/bootstrap.min.js" th:src="@{/bootstrap/bootstrap.min.js}"></script>
+<script src="../../js/home.js" th:src="@{/js/home.js}"></script>
+</body>
+</html>
