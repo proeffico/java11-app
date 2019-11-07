@@ -44,6 +44,8 @@ CREATE TABLE ibiza_question_type(
    question_type_id integer NOT NULL DEFAULT nextval('ibiza_question_type_id_seq') PRIMARY KEY,
    type text
 );
+-- How to Remove a Not Null Constraint in PostgreSQL
+alter table ibiza_question_type alter column type drop not null;
 
 -- create table question
 CREATE SEQUENCE ibiza_question_id_seq;
