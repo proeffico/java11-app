@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="ibiza_answer_option")
@@ -25,7 +25,7 @@ public class AnswerOptionBean {
 	private String answerOption;
 	
 	@OneToMany(mappedBy = "answerOption", cascade = CascadeType.ALL)
-	@JsonIgnore
+	@JsonIgnoreProperties(value = {"aswerId","question","answerOption","answeredDate"})
 	private List<AnswerBean> answers;
 
 	public int getAnswerOptionId() {

@@ -42,7 +42,7 @@ CREATE TABLE ibiza_questionary(
 CREATE SEQUENCE ibiza_question_type_id_seq;
 CREATE TABLE ibiza_question_type(
    question_type_id integer NOT NULL DEFAULT nextval('ibiza_question_type_id_seq') PRIMARY KEY,
-   type text NOT NULL
+   type text
 );
 
 -- create table question
