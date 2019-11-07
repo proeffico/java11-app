@@ -37,7 +37,7 @@
 	    <form th:object="${questionObject}" th:action="@{/save_question}" method="post">
 	    	<!-- <h1 th:text="*{questionaryBean}"></h1> -->
 		  	<label for="questionText">Uusi kysymys</label>
-		  	<input type="hidden" th:field="*{questionaryBean}" th:value="${questionary}" class="form-control"/>
+		  	<input type="hidden" th:field="*{questionary}" th:value="${questionary}" class="form-control"/>
 			<input type="text" id="questionText" th:field="*{question}" class="form-control"/>
 			<select th:field="*{questionType}" class="custom-select" id="questionTypeSelect">
 			      <option th:each="questionType, index : ${questionTypes}" th:value="${questionType.questionTypeId}" th:text="${questionType.type}"></option>

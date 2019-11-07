@@ -55,10 +55,11 @@ public class HomeController {
 	public String addQuestionToQuestionary(@PathVariable("id") String idStr, Model model) {
 		QuestionaryBean questionary = service.findQuestionaryById(Long.parseLong(idStr));
 		System.out.println(questionary);
+
 		model.addAttribute("questionary", questionary); 
 		model.addAttribute("questionsOfQuestionary", questionary.getQuestions());
 		model.addAttribute("questionTypes", service.findAllQuestionTypes());
-		
+		System.out.print(service.findAllQuestionTypes());
 		return "questionary-setting";
 	}
 	
@@ -69,6 +70,7 @@ public class HomeController {
 		//olen aikaisemmin setannut sen Questionbean olioon
 		//antaa metodeita kutsuttaessa null pointer exceptionii
 		System.out.println(questionObject.getQuestion());
+
 		//QuestionaryBean questionary = questionObject.getQuestionaryBean();
 		//List<QuestionBean> questionList = questionary.getQuestions();
 		//questionList.add(questionObject);
