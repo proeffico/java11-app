@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.UserBean;
 import com.springboot.ibiza.surveyapp.service.CommonService;
 
+@CrossOrigin( origins = "*" )
 @Controller
 @RequestMapping("/api/v1/")
 public class RestController {
@@ -55,13 +57,16 @@ public class RestController {
 	
 	/* REST API FOR ::QUESTIONARY:: OBJECT */
 	@RequestMapping(value="/questionary", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<QuestionaryBean> createQuestionary(@Valid @RequestBody QuestionaryBean questionaryBean) throws URISyntaxException {
-		logger.info("Start creating a new questionary: "+questionaryBean);
+	public ResponseEntity<QuestionaryBean> createQuestionary(@Valid @RequestBody QuestionaryBean questionary) throws URISyntaxException {
+		logger.info("Start creating a new questionary: "+questionary);
 		UserBean user = service.createUser(new UserBean());
 		logger.info("UserId: "+user.getUserId()+" has been created!");
 
-		questionaryBean.setUser(user);
-		QuestionaryBean result = service.createQuestionary(questionaryBean);
+		questionary.setUser(user);
+		QuestionaryBean result = service.createQuestionary(questionary);
+		logger.info("QuestionaryId: "+result.getQuestionaryId()+" has been created!");
+		
+		service.updateQuestionaryParentForQuestionsList(result.getQuestions(), result.getQuestionaryId());
 		return ResponseEntity.created(new URI("/api/v1/questionaries/questionary/" + result.getQuestionaryId()))
 	            .body(result);
 	}

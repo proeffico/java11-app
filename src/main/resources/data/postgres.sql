@@ -1,4 +1,5 @@
--- When create a table in Postgres, please check that is that name is used in another table or not. Example user is used in PostgreSQL. If you still like to use the same name, you have to put it in a quote mark
+-- When create a table in Postgres, should check is that name is used in another table or not. 
+   Example user is a default table in PostgreSQL. If you still like to use the same name, you have to put it in a quote mark
 -- Name	Storage Size	Range
 -- SMALLSERIAL	2 bytes	1 to 32,767
 -- SERIAL	4 bytes	1 to 2,147,483,647
@@ -9,11 +10,12 @@ SELECT * FROM information_schema.sequences;
 -- drop a sequences
 DROP SEQUENCE IF EXISTS sequences-name
 -- drop all tables
-DROP TABLE IF EXISTS ibiza_answer, ibiza_user, ibiza_questionary, ibiza_question_type, ibiza_question;
--- create table answer
-CREATE SEQUENCE ibiza_answer_id_seq;
-CREATE TABLE ibiza_answer(
-   answer_id integer NOT NULL DEFAULT nextval('ibiza_answer_id_seq') PRIMARY KEY,
+DROP TABLE IF EXISTS ibiza_answer_option, ibiza_user, ibiza_questionary, ibiza_question_type, ibiza_question, ibiza_answer;
+
+-- create table ibiza_answer_option
+CREATE SEQUENCE ibiza_answer_option_id_seq;
+CREATE TABLE ibiza_answer_option (
+   answer_option_id integer NOT NULL DEFAULT nextval('ibiza_answer_option_id_seq') PRIMARY KEY,
    answer text
 );
 
@@ -45,13 +47,24 @@ CREATE TABLE ibiza_question_type(
 
 -- create table question
 CREATE SEQUENCE ibiza_question_id_seq;
-CREATE TABLE ibiza_question(
+CREATE TABLE ibiza_question (
    question_id integer NOT NULL DEFAULT nextval('ibiza_question_id_seq') PRIMARY KEY,
    question text NOT NULL,
    fk_questionary_id integer,
    fk_question_type_id integer,
    CONSTRAINT question_fk_questionary_id FOREIGN KEY (fk_questionary_id) REFERENCES ibiza_questionary (questionary_id),
    CONSTRAINT question_fk_question_type_id FOREIGN KEY (fk_question_type_id) REFERENCES ibiza_question_type (question_type_id)
+);
+
+-- create table ibiza_answer
+CREATE SEQUENCE ibiza_answer_id_seq;
+CREATE TABLE ibiza_answer(
+   answer_id integer NOT NULL DEFAULT nextval('ibiza_answer_id_seq') PRIMARY KEY,
+   fk_answer_option_id integer,
+   fk_question_id integer,
+   answered_date timestamp default now(),
+   CONSTRAINT answer_fk_answer_option_id FOREIGN KEY (fk_answer_option_id) REFERENCES ibiza_answer_option (answer_option_id),
+   CONSTRAINT answer_fk_question_id FOREIGN KEY (fk_question_id) REFERENCES ibiza_question (question_id)
 );
 
 -- insert testing data

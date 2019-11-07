@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,6 +17,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.data.annotation.CreatedDate;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "ibiza_questionary")
@@ -31,8 +32,7 @@ public class QuestionaryBean {
 	@Column(name="name")
 	private String name;
 	
-	
-	@OneToMany(mappedBy = "questionary", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "questionary", cascade = CascadeType.ALL)
 	private List<QuestionBean> questions;
 	
 	@Temporal(TemporalType.TIMESTAMP)
@@ -41,19 +41,10 @@ public class QuestionaryBean {
     private Date createdDate;
 	
 	@ManyToOne
+	@JsonIgnoreProperties("questionaries")
 	@JoinColumn(name="fk_user_id")
 	private UserBean user;
 	
-	public QuestionaryBean() {
-		super();
-	}
-
-	public QuestionaryBean(Long questionaryId, String name) {
-		super();
-		this.questionaryId = questionaryId;
-		this.name = name;
-	}
-
 	public Long getQuestionaryId() {
 		return questionaryId;
 	}
@@ -70,13 +61,19 @@ public class QuestionaryBean {
 		this.name = name;
 	}
 
+
+
 	public List<QuestionBean> getQuestions() {
 		return questions;
 	}
 
+
+
 	public void setQuestions(List<QuestionBean> questions) {
 		this.questions = questions;
 	}
+
+
 
 	public Date getCreatedDate() {
 		return createdDate;
@@ -93,7 +90,11 @@ public class QuestionaryBean {
 	public void setUser(UserBean user) {
 		this.user = user;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "QuestionaryBean [questionaryId=" + questionaryId + ", name=" + name + ", questions=" + questions
+				+ ", createdDate=" + createdDate + ", user=" + user + "]";
+	}
 	
 }
