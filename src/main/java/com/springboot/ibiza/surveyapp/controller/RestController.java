@@ -24,69 +24,69 @@ import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.UserBean;
 import com.springboot.ibiza.surveyapp.service.CommonService;
 
-@CrossOrigin( origins = "*" )
-@Controller
-@RequestMapping("/api/v1/")
-public class RestController {
+//@CrossOrigin( origins = "*" )
+//@Controller
+//@RequestMapping("/api/v1/")
+ public class RestController {
 	
-	Logger logger = Logger.getLogger(RestController.class);
-	@Autowired
-	private CommonService service;
-	
-	/* REST API FOR ::ANSWER:: OBJECT */
-	@RequestMapping(value = "answers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<AnswerBean> findAllAnswers(){
-		return service.findAllAnswers();
-	}
-	
-	@RequestMapping(value="/answers", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public AnswerBean save(@Valid @RequestBody AnswerBean answerBean) {
-		return service.createAnswer(answerBean);
-	}
-	
-	/* REST API FOR ::QUESTION:: OBJECT */
-	@RequestMapping(value="/questions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<QuestionBean> questionRest() {
-		return service.findAllQuestions();
-	}
-	
-	@RequestMapping(value="/questions", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public QuestionBean save(@Valid @RequestBody QuestionBean questionBean) {
-		return service.createQuestion(questionBean);
-	}
-	
-	/* REST API FOR ::QUESTIONARY:: OBJECT */
-	@RequestMapping(value="/questionary", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<QuestionaryBean> createQuestionary(@Valid @RequestBody QuestionaryBean questionary) throws URISyntaxException {
-		logger.info("Start creating a new questionary: "+questionary);
-		UserBean user = service.createUser(new UserBean());
-		logger.info("UserId: "+user.getUserId()+" has been created!");
-
-		questionary.setUser(user);
-		QuestionaryBean result = service.createQuestionary(questionary);
-		logger.info("QuestionaryId: "+result.getQuestionaryId()+" has been created!");
-		
-		service.updateQuestionaryParentForQuestionsList(result.getQuestions(), result.getQuestionaryId());
-		return ResponseEntity.created(new URI("/api/v1/questionaries/questionary/" + result.getQuestionaryId()))
-	            .body(result);
-	}
-	
-	@RequestMapping(value="questionaries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<QuestionaryBean> findAllQuestionaries() {
-		return service.findAllQuestionaries();
-	}
-	
-	@RequestMapping(value="questionaries/questionary/{questionaryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody QuestionaryBean findQuestionaryById(@PathVariable String questionaryId){
-		try {
-			Long id = Long.parseLong(questionaryId);
-			return service.findQuestionaryById(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return new QuestionaryBean();
-		}
-	}
-	
+//	Logger logger = Logger.getLogger(RestController.class);
+//	@Autowired
+//	private CommonService service;
+//	
+//	/* REST API FOR ::ANSWER:: OBJECT */
+//	@RequestMapping(value = "answers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody List<AnswerBean> findAllAnswers(){
+//		return service.findAllAnswers();
+//	}
+//	
+//	@RequestMapping(value="/answers", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public AnswerBean save(@Valid @RequestBody AnswerBean answerBean) {
+//		return service.createAnswer(answerBean);
+//	}
+//	
+//	/* REST API FOR ::QUESTION:: OBJECT */
+//	@RequestMapping(value="/questions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody List<QuestionBean> questionRest() {
+//		return service.findAllQuestions();
+//	}
+//	
+//	@RequestMapping(value="/questions", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public QuestionBean save(@Valid @RequestBody QuestionBean questionBean) {
+//		return service.createQuestion(questionBean);
+//	}
+//	
+//	/* REST API FOR ::QUESTIONARY:: OBJECT */
+//	@RequestMapping(value="/questionary", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
+//	public ResponseEntity<QuestionaryBean> createQuestionary(@Valid @RequestBody QuestionaryBean questionary) throws URISyntaxException {
+//		logger.info("Start creating a new questionary: "+questionary);
+//		UserBean user = service.createUser(new UserBean());
+//		logger.info("UserId: "+user.getUserId()+" has been created!");
+//
+//		questionary.setUser(user);
+//		QuestionaryBean result = service.createQuestionary(questionary);
+//		logger.info("QuestionaryId: "+result.getQuestionaryId()+" has been created!");
+//		
+//		service.updateQuestionaryParentForQuestionsList(result.getQuestions(), result.getQuestionaryId());
+//		return ResponseEntity.created(new URI("/api/v1/questionaries/questionary/" + result.getQuestionaryId()))
+//	            .body(result);
+//	}
+//	
+//	@RequestMapping(value="questionaries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody List<QuestionaryBean> findAllQuestionaries() {
+//		return service.findAllQuestionaries();
+//	}
+//	
+//	@RequestMapping(value="questionaries/questionary/{questionaryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public @ResponseBody QuestionaryBean findQuestionaryById(@PathVariable String questionaryId){
+//		try {
+//			Long id = Long.parseLong(questionaryId);
+//			return service.findQuestionaryById(id);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return new QuestionaryBean();
+//		}
+	//}
+//	
 	
 	//REST SERVICE USING ID
 /*	@RequestMapping(value="/questions/{id}", method = RequestMethod.GET)
