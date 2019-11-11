@@ -31,6 +31,9 @@ public class HomeController {
 		model.addAttribute("standardDate", new Date());
 		model.addAttribute("questionTypes", service.findAllQuestionTypes());
 		model.addAttribute("menus", ibizaConfig.getMenus());
+		model.addAttribute("success", ibizaConfig.getSuccess());
+		model.addAttribute("close", ibizaConfig.getClose());
+		model.addAttribute("createSurvey", ibizaConfig.getCreateSurvey());
     	return "home";
     }
 	

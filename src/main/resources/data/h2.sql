@@ -3,7 +3,7 @@ CREATE SCHEMA IF NOT EXISTS testdb;
 DROP TABLE IF EXISTS ibiza_answer_option;
 
  -- create table ibiza_answer_option
-CREATE TABLE ibiza_answer_option (answer_option_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, answer_option TEXT NOT NULL);
+CREATE TABLE ibiza_answer_option (answer_option_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, answer_option TEXT);
 -- insert testing data
 INSERT INTO ibiza_answer_option (answer_option) VALUES ('Kyllä'), ('Ei'), ('Ei koske minua');
 

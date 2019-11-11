@@ -106,11 +106,9 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        Sinun kyselyn tallentaminen tietokantaan onnistui!
-      </div>
+      <div class="modal-body" th:text="${success }"></div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sulje</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="${close }"></button>
       </div>
     </div>
   </div>

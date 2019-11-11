@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import com.springboot.ibiza.surveyapp.service.CommonService;
 @Controller
 @RequestMapping("/api/v1/")
 public class AnswerController {
+	Logger logger = Logger.getLogger(AnswerController.class);
 
 	@Autowired
 	private CommonService service;

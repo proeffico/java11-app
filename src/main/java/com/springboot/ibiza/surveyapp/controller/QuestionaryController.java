@@ -22,6 +22,7 @@ import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.UserBean;
 import com.springboot.ibiza.surveyapp.service.CommonService;
 
+
 @CrossOrigin( origins = "*" )
 @Controller
 @RequestMapping("/api/v1/")
