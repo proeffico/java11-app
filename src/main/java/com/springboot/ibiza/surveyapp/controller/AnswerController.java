@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springboot.ibiza.surveyapp.jpa.beans.AnswerBean;
-import com.springboot.ibiza.surveyapp.service.CommonService;
+import com.springboot.ibiza.surveyapp.repositories.AnswerRepository;
 
 @CrossOrigin( origins = "*" )
 @Controller
@@ -24,16 +24,21 @@ public class AnswerController {
 	Logger logger = Logger.getLogger(AnswerController.class);
 
 	@Autowired
-	private CommonService service;
+	private AnswerRepository answerRepo;
 	
 	/* REST API FOR ::ANSWER:: OBJECT */
 	@RequestMapping(value = "answers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<AnswerBean> findAllAnswers(){
-		return service.findAllAnswers();
+		return answerRepo.findAll();
+	}
+	
+	@RequestMapping(value="/answer", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public AnswerBean save(@Valid @RequestBody AnswerBean answer) {
+		return answerRepo.save(answer);
 	}
 	
 	@RequestMapping(value="/answers", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public AnswerBean save(@Valid @RequestBody AnswerBean answerBean) {
-		return service.createAnswer(answerBean);
+	public List<AnswerBean> saveAll(@Valid @RequestBody List<AnswerBean> answers) {
+		return answerRepo.saveAll(answers);
 	}
 }

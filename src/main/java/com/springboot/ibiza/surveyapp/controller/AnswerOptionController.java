@@ -1,6 +1,7 @@
 package com.springboot.ibiza.surveyapp.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -27,16 +28,15 @@ public class AnswerOptionController {
 	private AnswerOptionRepository answerOptionRepo;
 	
 	/*LIST ALL ANSWER OPTIONS*/
-	@RequestMapping(value = "answeroptions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "answer-options", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<AnswerOptionBean> findAllAnswerOptions(){
 		return answerOptionRepo.findAll();
 	}
 	
 	/*FIND ANSWER OPTIONS BY ID*/
-	@RequestMapping(value = "answeroption/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody AnswerOptionBean findAnswerOptionById(@PathVariable("id") String idStr){
-		//return answerOptionRepo.find;
-		return null;
+	@RequestMapping(value = "/answer-options/answer-option/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Optional<AnswerOptionBean> findAnswerOptionById(@PathVariable("id") String idStr){
+		return answerOptionRepo.findById(Long.parseLong(idStr));
 	}
 	
 	/*SAVE LIST OF ANSWER OPTION*/
@@ -46,7 +46,7 @@ public class AnswerOptionController {
 	}
 	
 	/*SAVE AN ANSWER OPTION*/
-	@RequestMapping(value="/answeroption", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/answer-option", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public AnswerOptionBean save(@Valid @RequestBody AnswerOptionBean answerOption) {
 		return answerOptionRepo.save(answerOption);
 	}

@@ -37,7 +37,7 @@ public class AnswerBean {
 	private AnswerOptionBean answerOption;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "anwsered_date", nullable = false, updatable = false)
+    @Column(name = "answered_date", nullable = false, updatable = false)
     @CreatedDate
     private Date answeredDate;
 	
