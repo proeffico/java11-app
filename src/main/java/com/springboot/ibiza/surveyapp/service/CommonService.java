@@ -13,6 +13,7 @@ public interface CommonService {
    public List<QuestionBean> findAllQuestions();
    public List<QuestionaryBean> findAllQuestionaries();
    public List<QuestionTypeBean> findAllQuestionTypes();
+  
    
    public QuestionaryBean createQuestionary(QuestionaryBean questionaryBean);
    public QuestionBean createQuestion(QuestionBean questionBean);

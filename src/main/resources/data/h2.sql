@@ -48,6 +48,7 @@ INSERT INTO ibiza_questionary (name, fk_user_id) VALUES ('Kysely 1', 1), ('Kysel
 DROP TABLE IF EXISTS ibiza_answer;
 create table ibiza_answer (answer_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     fk_question_id INT,
+    answer_str text,
     fk_answer_option_id INT,
     answered_date timestamp DEFAULT CURRENT_TIMESTAMP(),
     FOREIGN KEY (fk_question_id) REFERENCES ibiza_question (question_id),

@@ -59,9 +59,10 @@ public class CommonServiceImpl implements CommonService {
 		return questionRepo.save(questionBean);
 	}
 
+	
 	@Override
 	public AnswerBean createAnswer(AnswerBean answerBean) {
-		return null;
+		return answerRepo.save(answerBean);
 	}
 
 	public QuestionaryBean findQuestionaryById(Long id) {

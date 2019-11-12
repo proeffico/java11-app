@@ -24,7 +24,10 @@ public class AnswerBean {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="answer_id", nullable=false)
-	private int aswerId;
+	private int answerId;
+	
+	@Column(name="answer_str")
+	private String answerStr;
 	
 	@ManyToOne
 	@JsonIgnoreProperties(value = {"questionary", "questionType"})
@@ -33,20 +36,20 @@ public class AnswerBean {
 	
 	@ManyToOne
 	@JsonIgnoreProperties(value = {"answerOptionId"})
-	@JoinColumn(name="fk_answer_option_id")
+	@JoinColumn(name="fk_answer_option_id", nullable=true)
 	private AnswerOptionBean answerOption;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "anwsered_date", nullable = false, updatable = false)
+    @Column(name = "answered_date", nullable = false, updatable = false)
     @CreatedDate
     private Date answeredDate;
 	
-	public int getAswerId() {
-		return aswerId;
+	public int getAnswerId() {
+		return answerId;
 	}
 
-	public void setAswerId(int aswerId) {
-		this.aswerId = aswerId;
+	public void setAnswerId(int answerId) {
+		this.answerId = answerId;
 	}
 
 	public QuestionBean getQuestion() {
@@ -71,6 +74,13 @@ public class AnswerBean {
 
 	public void setAnsweredDate(Date answeredDate) {
 		this.answeredDate = answeredDate;
+	}
+	public String getAnswerStr() {
+		return answerStr;
+	}
+
+	public void setAnswerStr(String answerStr) {
+		this.answerStr = answerStr;
 	}
 	
 	
