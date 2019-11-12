@@ -55,6 +55,8 @@ create table ibiza_answer (answer_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     FOREIGN KEY (fk_answer_option_id) REFERENCES ibiza_answer_option (answer_option_id)
 );
 
+INSERT INTO ibiza_answer(fk_question_id, fk_answer_option_id) values (1,1), (1,2), (2,1), (2,2);
+
 -- create table ibiza_question 
 DROP TABLE IF EXISTS ibiza_question;
 CREATE TABLE ibiza_question (

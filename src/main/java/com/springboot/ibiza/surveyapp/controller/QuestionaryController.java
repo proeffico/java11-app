@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.UserBean;
+import com.springboot.ibiza.surveyapp.repositories.QuestionaryRepository;
+import com.springboot.ibiza.surveyapp.repositories.UserRepository;
 import com.springboot.ibiza.surveyapp.service.CommonService;
 
 
@@ -29,35 +31,42 @@ import com.springboot.ibiza.surveyapp.service.CommonService;
 public class QuestionaryController {
 
 	Logger logger = Logger.getLogger(QuestionaryController.class);
+	
 	@Autowired
-	private CommonService service;
+	private QuestionaryRepository questionaryRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
+	
+	@Autowired
+	private CommonService commonService;
 	
 	/* REST API FOR ::QUESTIONARY:: OBJECT */
 	@RequestMapping(value="/questionary", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<QuestionaryBean> createQuestionary(@Valid @RequestBody QuestionaryBean questionary) throws URISyntaxException {
 		logger.info("Start creating a new questionary: "+questionary);
-		UserBean user = service.createUser(new UserBean());
+		UserBean user = userRepo.save(new UserBean());
 		logger.info("UserId: "+user.getUserId()+" has been created!");
 
 		questionary.setUser(user);
-		QuestionaryBean result = service.createQuestionary(questionary);
+		QuestionaryBean result = questionaryRepo.save(questionary);
 		logger.info("QuestionaryId: "+result.getQuestionaryId()+" has been created!");
 		
-		service.updateQuestionaryParentForQuestionsList(result.getQuestions(), result.getQuestionaryId());
+		commonService.updateQuestionaryParentForQuestionsList(result.getQuestions(), result.getQuestionaryId());
 		return ResponseEntity.created(new URI("/api/v1/questionaries/questionary/" + result.getQuestionaryId()))
 	            .body(result);
 	}
 	
 	@RequestMapping(value="questionaries", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<QuestionaryBean> findAllQuestionaries() {
-		return service.findAllQuestionaries();
+		return questionaryRepo.findAll();
 	}
 	
 	@RequestMapping(value="questionaries/questionary/{questionaryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody QuestionaryBean findQuestionaryById(@PathVariable String questionaryId){
 		try {
 			Long id = Long.parseLong(questionaryId);
-			return service.findQuestionaryById(id);
+			return questionaryRepo.findByQuestionaryId(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new QuestionaryBean();

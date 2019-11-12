@@ -5,26 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.springboot.ibiza.surveyapp.jpa.beans.AnswerBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
-import com.springboot.ibiza.surveyapp.jpa.beans.QuestionTypeBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
-import com.springboot.ibiza.surveyapp.jpa.beans.UserBean;
-import com.springboot.ibiza.surveyapp.repositories.AnswerRepository;
 import com.springboot.ibiza.surveyapp.repositories.QuestionRepository;
-import com.springboot.ibiza.surveyapp.repositories.QuestionTypeRepository;
-import com.springboot.ibiza.surveyapp.repositories.QuestionaryRepository;
-import com.springboot.ibiza.surveyapp.repositories.UserRepository;
 
 @Service
 public class CommonServiceImpl implements CommonService {
 
 	@Autowired
-	private AnswerRepository answerRepo;
-	
-	@Autowired
 	private QuestionRepository questionRepo;
 	
+<<<<<<< HEAD
 	@Autowired
 	private QuestionaryRepository questionaryRepo;
 	
@@ -79,6 +70,8 @@ public class CommonServiceImpl implements CommonService {
 		return userRepo.save(user);
 	}
 
+=======
+>>>>>>> ebc62eb48ac8c52ce7992cfd50ba6d8c5ef02f15
 	@Override
 	public List<QuestionBean> updateQuestionaryParentForQuestionsList(List<QuestionBean> questions, Long questionaryId) {
 		questions.forEach(question -> {
@@ -88,5 +81,4 @@ public class CommonServiceImpl implements CommonService {
 		});
 		return questionRepo.saveAll(questions);
 	}
-
 }

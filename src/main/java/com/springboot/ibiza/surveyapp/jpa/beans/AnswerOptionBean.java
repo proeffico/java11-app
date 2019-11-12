@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="ibiza_answer_option")
@@ -19,20 +19,20 @@ public class AnswerOptionBean {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="answer_option_id")
-    private int answerOptionId;
+    private Long answerOptionId;
 	
 	@Column(name="answer_option")
 	private String answerOption;
 	
 	@OneToMany(mappedBy = "answerOption", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties(value = {"aswerId","question","answerOption","answeredDate"})
+	@JsonIgnore
 	private List<AnswerBean> answers;
 
-	public int getAnswerOptionId() {
+	public Long getAnswerOptionId() {
 		return answerOptionId;
 	}
 
-	public void setAnswerOptionId(int answerOptionId) {
+	public void setAnswerOptionId(Long answerOptionId) {
 		this.answerOptionId = answerOptionId;
 	}
 

@@ -37,7 +37,12 @@ public class AnswerController {
 	/* REST API FOR ::ANSWER:: OBJECT */
 	@RequestMapping(value = "answers", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<AnswerBean> findAllAnswers(){
-		return service.findAllAnswers();
+		return answerRepo.findAll();
+	}
+	
+	@RequestMapping(value="/answer", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	public AnswerBean save(@Valid @RequestBody AnswerBean answer) {
+		return answerRepo.save(answer);
 	}
 	
 	@RequestMapping(value="/answers", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
