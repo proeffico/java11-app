@@ -20,7 +20,6 @@ import com.springboot.ibiza.surveyapp.jpa.beans.AnswerJsonBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
 import com.springboot.ibiza.surveyapp.repositories.AnswerRepository;
 import com.springboot.ibiza.surveyapp.repositories.QuestionRepository;
-import com.springboot.ibiza.surveyapp.service.CommonService;
 
 @CrossOrigin( origins = "*" )
 @Controller
@@ -28,8 +27,6 @@ import com.springboot.ibiza.surveyapp.service.CommonService;
 public class AnswerController {
 	Logger logger = Logger.getLogger(AnswerController.class);
 
-	@Autowired
-	private CommonService service;
 	@Autowired
 	private QuestionRepository questionRepo;
 	@Autowired
@@ -51,8 +48,6 @@ public class AnswerController {
 		
 		answersJson.forEach(answerObj -> {
 			AnswerBean answer = new AnswerBean();
-		
-		
 			QuestionBean question = questionRepo.findByQuestionId(answerObj.getQuestionId());
 			answer.setQuestion(question);
 			answer.setAnswerStr(answerObj.getAnswerStr());
