@@ -22,6 +22,7 @@ import com.springboot.ibiza.surveyapp.repositories.QuestionaryRepository;
 public class HomeController {
 	Logger logger = Logger.getLogger(HomeController.class);
 	
+	
 	@Autowired
 	private QuestionTypeRepository questionTypeRepo;
 	
