@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -27,11 +29,24 @@ public class AnswerOptionBean {
 	@OneToMany(mappedBy = "answerOption", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<AnswerBean> answers;
+	
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name="fk_question_id")
+	private QuestionBean question;
+	
+	public QuestionBean getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(QuestionBean question) {
+		this.question = question;
+	}
 
 	public Long getAnswerOptionId() {
 		return answerOptionId;
 	}
-
+	
 	public void setAnswerOptionId(Long answerOptionId) {
 		this.answerOptionId = answerOptionId;
 	}

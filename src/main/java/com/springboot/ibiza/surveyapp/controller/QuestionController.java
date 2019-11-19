@@ -42,4 +42,7 @@ public class QuestionController {
 	public QuestionBean save(@Valid @RequestBody QuestionBean questionBean) {
 		return questionRepo.save(questionBean);
 	}
+	/*
+	@RequestMapping(value="/questions/question/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public QuestionBean update()*/
 }

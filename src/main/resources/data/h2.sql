@@ -3,9 +3,9 @@ CREATE SCHEMA IF NOT EXISTS testdb;
 DROP TABLE IF EXISTS ibiza_answer_option;
 
  -- create table ibiza_answer_option
-CREATE TABLE ibiza_answer_option (answer_option_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, answer_option TEXT);
+CREATE TABLE ibiza_answer_option (answer_option_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, fk_question_id INT, answer_option TEXT);
 -- insert testing data
-INSERT INTO ibiza_answer_option (answer_option) VALUES ('Kyllä'), ('Ei'), ('Ei koske minua');
+INSERT INTO ibiza_answer_option (answer_option, fk_question_id) VALUES ('Kyllä', 1), ('Ei', 1), ('Ei koske minua', 1);
 
 SELECT * FROM ibiza_answer_option;
 

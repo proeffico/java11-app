@@ -42,8 +42,20 @@ public class QuestionBean {
 	@JsonIgnore
 	private List<AnswerBean> answers;
 	
+	@OneToMany(mappedBy="question", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties(value= {"answers", "questions"})
+	private List<AnswerOptionBean> answerOptions;
+	
 	public Long getQuestionId() {
 		return questionId;
+	}
+
+	public List<AnswerOptionBean> getAnswerOptions() {
+		return answerOptions;
+	}
+
+	public void setAnswerOptions(List<AnswerOptionBean> answerOptions) {
+		this.answerOptions = answerOptions;
 	}
 
 	public void setQuestionId(Long questionId) {

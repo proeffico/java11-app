@@ -3,11 +3,12 @@ package com.springboot.ibiza.surveyapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
 import com.springboot.ibiza.surveyapp.repositories.QuestionRepository;
-
+@Service
 public class CommonServiceImpl implements CommonService {
 
 	@Autowired
