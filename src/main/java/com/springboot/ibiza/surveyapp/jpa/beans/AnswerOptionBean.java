@@ -1,3 +1,4 @@
+
 package com.springboot.ibiza.surveyapp.jpa.beans;
 
 import java.util.List;
