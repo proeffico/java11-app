@@ -26,7 +26,7 @@ import com.springboot.ibiza.surveyapp.repositories.QuestionRepository;
 
 @CrossOrigin( origins = "*" )
 @Controller
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v2/")
 public class AnswerController {
 	Logger logger = Logger.getLogger(AnswerController.class);
 

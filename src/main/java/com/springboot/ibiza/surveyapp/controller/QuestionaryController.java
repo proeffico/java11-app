@@ -28,7 +28,7 @@ import com.springboot.ibiza.surveyapp.service.CommonService;
 
 @CrossOrigin( origins = "*" )
 @Controller
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v2/")
 public class QuestionaryController {
 
 	Logger logger = Logger.getLogger(QuestionaryController.class);

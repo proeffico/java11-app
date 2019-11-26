@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
 import com.springboot.ibiza.surveyapp.repositories.QuestionRepository;
+
 @Service
 public class CommonServiceImpl implements CommonService {
 
