@@ -30,17 +30,17 @@ public class AnswerBean {
 	private String answerStr;
 	
 	@ManyToOne
-	@JsonIgnoreProperties(value = {"questionary", "questionType"})
+	@JsonIgnoreProperties(value = {"questionId", "answerOptions", "questionary", "questionType", })
 	@JoinColumn(name="fk_question_id")
 	private QuestionBean question;
 	
 	@ManyToOne
-	@JsonIgnoreProperties(value = {"answerOptionId"})
+	@JsonIgnoreProperties(value = {"answerOptionId", "answers", "question"})
 	@JoinColumn(name="fk_answer_option_id", nullable=true)
 	private AnswerOptionBean answerOption;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "answered_date", nullable = false, updatable = false)
+    @Column(name = "answered_date", nullable = true, updatable = false)
     @CreatedDate
     private Date answeredDate;
 	

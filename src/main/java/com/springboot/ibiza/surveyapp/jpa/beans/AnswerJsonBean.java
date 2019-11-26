@@ -5,7 +5,7 @@ public class AnswerJsonBean {
 	
 	private Long questionId;
 	
-	
+	private Long answerOptionId;
 	
 	private String answerStr;
 
@@ -25,6 +25,14 @@ public class AnswerJsonBean {
 
 	public void setAnswerStr(String answerStr) {
 		this.answerStr = answerStr;
+	}
+
+	public Long getAnswerOptionId() {
+		return answerOptionId;
+	}
+
+	public void setAnswerOptionId(Long answerOptionId) {
+		this.answerOptionId = answerOptionId;
 	}
 	
 	

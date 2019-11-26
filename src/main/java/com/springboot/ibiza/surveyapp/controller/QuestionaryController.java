@@ -1,5 +1,6 @@
 package com.springboot.ibiza.surveyapp.controller;
 
+import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -27,7 +28,7 @@ import com.springboot.ibiza.surveyapp.service.CommonService;
 
 @CrossOrigin( origins = "*" )
 @Controller
-@RequestMapping("/api/v2/")
+@RequestMapping("/api/v1/")
 public class QuestionaryController {
 
 	Logger logger = Logger.getLogger(QuestionaryController.class);
@@ -44,7 +45,7 @@ public class QuestionaryController {
 	/* REST API FOR ::QUESTIONARY:: OBJECT */
 	@RequestMapping(value="/questionary", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<QuestionaryBean> createQuestionary(@Valid @RequestBody QuestionaryBean questionary) throws URISyntaxException {
-		logger.info("Start creating a new questionary: "+questionary);
+		logger.info("Start creating a new questionary: "+ questionary.getQuestions().get(0).getQuestionType().getType()); 
 		UserBean user = userRepo.save(new UserBean());
 		logger.info("UserId: "+user.getUserId()+" has been created!");
 

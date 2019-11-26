@@ -1,6 +1,7 @@
 package com.springboot.ibiza.surveyapp.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,16 +18,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.springboot.ibiza.surveyapp.jpa.beans.AnswerBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.AnswerJsonBean;
+import com.springboot.ibiza.surveyapp.jpa.beans.AnswerOptionBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
+import com.springboot.ibiza.surveyapp.repositories.AnswerOptionRepository;
 import com.springboot.ibiza.surveyapp.repositories.AnswerRepository;
 import com.springboot.ibiza.surveyapp.repositories.QuestionRepository;
 
 @CrossOrigin( origins = "*" )
 @Controller
-@RequestMapping("/api/v2/")
+@RequestMapping("/api/v1/")
 public class AnswerController {
 	Logger logger = Logger.getLogger(AnswerController.class);
 
+	@Autowired
+	private AnswerOptionRepository answerOptionRepo;
 	@Autowired
 	private QuestionRepository questionRepo;
 	@Autowired
@@ -48,9 +53,13 @@ public class AnswerController {
 		
 		answersJson.forEach(answerObj -> {
 			AnswerBean answer = new AnswerBean();
+			AnswerOptionBean option = answerOptionRepo.findByAnswerOptionId(answerObj.getAnswerOptionId());
 			QuestionBean question = questionRepo.findByQuestionId(answerObj.getQuestionId());
 			answer.setQuestion(question);
+			answer.setAnswerOption(option);
 			answer.setAnswerStr(answerObj.getAnswerStr());
+			
+			answer.setAnsweredDate(new Date());
 			answers.add(answer);
 		});
 		

@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @CrossOrigin( origins = "*" )
 @Controller
-@RequestMapping("/api/v2/")
+@RequestMapping("/api/v1/")
 public class QuestionTypeController {
 }

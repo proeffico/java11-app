@@ -21,7 +21,7 @@ import com.springboot.ibiza.surveyapp.repositories.AnswerOptionRepository;
 
 @CrossOrigin( origins = "*" )
 @Controller
-@RequestMapping("/api/v2/")
+@RequestMapping("/api/v1/")
 public class AnswerOptionController {
 	Logger logger = Logger.getLogger(AnswerOptionController.class);
 	@Autowired

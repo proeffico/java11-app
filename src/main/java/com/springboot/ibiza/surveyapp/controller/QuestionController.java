@@ -21,7 +21,7 @@ import com.springboot.ibiza.surveyapp.repositories.QuestionRepository;
 
 @CrossOrigin( origins = "*" )
 @Controller
-@RequestMapping("/api/v2/")
+@RequestMapping("/api/v1/")
 public class QuestionController {
 
 	@Autowired
