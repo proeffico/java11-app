@@ -45,7 +45,7 @@ $("#createBtn").click(function(){
 			req.setRequestHeader("Content-Type", "application/json");
 		},
 		type: "POST",
-		url: window.location.href + "api/v1/questionary",
+		url: window.location.href + "api/v2/questionary",
 		data: JSON.stringify(requestObj),
 		success: function(data){
 			questionaryId = data.questionaryId;

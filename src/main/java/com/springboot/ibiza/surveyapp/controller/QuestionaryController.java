@@ -54,7 +54,7 @@ public class QuestionaryController {
 		logger.info("QuestionaryId: "+result.getQuestionaryId()+" has been created!");
 		
 		commonService.updateQuestionaryParentForQuestionsList(result.getQuestions(), result.getQuestionaryId());
-		return ResponseEntity.created(new URI("/api/v1/questionaries/questionary/" + result.getQuestionaryId()))
+		return ResponseEntity.created(new URI("/api/v2/questionaries/questionary/" + result.getQuestionaryId()))
 	            .body(result);
 	}
 	
