@@ -13,15 +13,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.springboot.ibiza.surveyapp.config.IbizaConfiguration;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionBean;
 import com.springboot.ibiza.surveyapp.jpa.beans.QuestionaryBean;
-import com.springboot.ibiza.surveyapp.service.CommonService;
+import com.springboot.ibiza.surveyapp.repositories.QuestionRepository;
+import com.springboot.ibiza.surveyapp.repositories.QuestionTypeRepository;
+import com.springboot.ibiza.surveyapp.repositories.QuestionaryRepository;
 
 @Controller
 @RequestMapping("/")
 public class HomeController {
 	Logger logger = Logger.getLogger(HomeController.class);
 	
+	
 	@Autowired
-	private CommonService service;
+	private QuestionTypeRepository questionTypeRepo;
+	
+	@Autowired
+	private QuestionaryRepository questionaryRepo;
+	
+	@Autowired
+	private QuestionRepository questionRepo;
 	
 	@Autowired
 	private IbizaConfiguration ibizaConfig;
@@ -29,8 +38,11 @@ public class HomeController {
 	@RequestMapping("")
     public String getHomePageView(Model model){
 		model.addAttribute("standardDate", new Date());
-		model.addAttribute("questionTypes", service.findAllQuestionTypes());
+		model.addAttribute("questionTypes", questionTypeRepo.findAll());
 		model.addAttribute("menus", ibizaConfig.getMenus());
+		model.addAttribute("success", ibizaConfig.getSuccess());
+		model.addAttribute("close", ibizaConfig.getClose());
+		model.addAttribute("createSurvey", ibizaConfig.getCreateSurvey());
     	return "home";
     }
 	
@@ -55,14 +67,14 @@ public class HomeController {
 	/*LIST ALL QUESTIONARIES*/
 	@RequestMapping(value= "/questionaries", method = RequestMethod.GET)
 	public String getGuestionariesView(Model model) {
-		model.addAttribute("questionaries", service.findAllQuestionaries());
+		model.addAttribute("questionaries", questionaryRepo.findAll());
 		return "list-of-questionary";
 	}
 	/*QUESTIONARY'S INFO*/
 	@RequestMapping(value="/questionaries/questionary/{id}", method = RequestMethod.GET)
 	public String getQuestionaryInfo(@PathVariable("id") String idStr, Model model){
 		logger.info("Start searching questionary from database..."+ idStr);
-		QuestionaryBean questionaryObj = service.findQuestionaryById(Long.parseLong(idStr));
+		QuestionaryBean questionaryObj = questionaryRepo.findByQuestionaryId(Long.parseLong(idStr));
 		logger.info(questionaryObj.toString());
 		model.addAttribute("questionaryObj", questionaryObj);
 		return "questionary-info";
@@ -76,12 +88,12 @@ public class HomeController {
 	
 	@RequestMapping(value = "/add/{id}", method = RequestMethod.GET)
 	public String addQuestionToQuestionary(@PathVariable("id") String idStr, Model model) {
-		QuestionaryBean questionary = service.findQuestionaryById(Long.parseLong(idStr));
+		QuestionaryBean questionary = questionaryRepo.findByQuestionaryId(Long.parseLong(idStr));
 		System.out.println(questionary);
 		model.addAttribute("questionary", questionary); 
 		model.addAttribute("questionsOfQuestionary", questionary.getQuestions());
-		model.addAttribute("questionTypes", service.findAllQuestionTypes());
-		System.out.print(service.findAllQuestionTypes());
+		model.addAttribute("questionTypes", questionTypeRepo.findAll());
+		System.out.print(questionTypeRepo.findAll());
 		return "questionary-setting";
 	}
 	
@@ -98,7 +110,7 @@ public class HomeController {
 		//questionList.add(questionObject);
 		//questionary.setQuestions(questionList);
 		//service.createQuestion(questionObject);
-		service.createQuestion(questionObject);
+		questionRepo.save(questionObject);
 		
 		return "redirect:questionaries";
 	}

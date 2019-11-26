@@ -3,9 +3,9 @@ CREATE SCHEMA IF NOT EXISTS testdb;
 DROP TABLE IF EXISTS ibiza_answer_option;
 
  -- create table ibiza_answer_option
-CREATE TABLE ibiza_answer_option (answer_option_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, answer_option TEXT NOT NULL);
+CREATE TABLE ibiza_answer_option (answer_option_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, fk_question_id INT, answer_option TEXT);
 -- insert testing data
-INSERT INTO ibiza_answer_option (answer_option) VALUES ('Kyllä'), ('Ei'), ('Ei koske minua');
+INSERT INTO ibiza_answer_option (answer_option, fk_question_id) VALUES ('Kyllä', 1), ('Ei', 1), ('Ei koske minua', 1);
 
 SELECT * FROM ibiza_answer_option;
 
@@ -48,11 +48,14 @@ INSERT INTO ibiza_questionary (name, fk_user_id) VALUES ('Kysely 1', 1), ('Kysel
 DROP TABLE IF EXISTS ibiza_answer;
 create table ibiza_answer (answer_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     fk_question_id INT,
+    answer_str text,
     fk_answer_option_id INT,
     answered_date timestamp DEFAULT CURRENT_TIMESTAMP(),
     FOREIGN KEY (fk_question_id) REFERENCES ibiza_question (question_id),
     FOREIGN KEY (fk_answer_option_id) REFERENCES ibiza_answer_option (answer_option_id)
 );
+
+INSERT INTO ibiza_answer(fk_question_id, fk_answer_option_id) values (1,1), (1,2), (2,1), (2,2);
 
 -- create table ibiza_question 
 DROP TABLE IF EXISTS ibiza_question;

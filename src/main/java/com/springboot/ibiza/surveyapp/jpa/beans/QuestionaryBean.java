@@ -61,19 +61,13 @@ public class QuestionaryBean {
 		this.name = name;
 	}
 
-
-
 	public List<QuestionBean> getQuestions() {
 		return questions;
 	}
 
-
-
 	public void setQuestions(List<QuestionBean> questions) {
 		this.questions = questions;
 	}
-
-
 
 	public Date getCreatedDate() {
 		return createdDate;

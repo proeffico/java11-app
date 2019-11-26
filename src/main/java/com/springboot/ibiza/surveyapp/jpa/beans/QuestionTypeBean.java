@@ -33,7 +33,6 @@ public class QuestionTypeBean {
 		return questionTypeId;
 	}
 
-
 	public void setQuestionTypeId(int questionTypeId) {
 		this.questionTypeId = questionTypeId;
 	}
