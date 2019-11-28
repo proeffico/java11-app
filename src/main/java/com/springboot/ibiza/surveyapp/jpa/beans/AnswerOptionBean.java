@@ -2,6 +2,7 @@
 package com.springboot.ibiza.surveyapp.jpa.beans;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,9 +11,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,9 +31,11 @@ public class AnswerOptionBean {
 	@Column(name="answer_option")
 	private String answerOption;
 	
-	@OneToMany(mappedBy = "answerOption", cascade = CascadeType.ALL)
+	/*@OneToMany(mappedBy = "answerOption", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private List<AnswerBean> answers;
+	private List<AnswerBean> answers;*/
+	@ManyToMany(mappedBy = "chosenAnswers")
+	Set<AnswerBean> answers;
 	
 	@ManyToOne
 	@JsonIgnore
@@ -60,13 +66,15 @@ public class AnswerOptionBean {
 		this.answerOption = answerOption;
 	}
 
-	public List<AnswerBean> getAnswers() {
+	public Set<AnswerBean> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(List<AnswerBean> answers) {
+	public void setAnswers(Set<AnswerBean> answers) {
 		this.answers = answers;
 	}
+
+	
 	
 	
 }

@@ -1,6 +1,7 @@
 package com.springboot.ibiza.surveyapp.jpa.beans;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -34,11 +37,19 @@ public class AnswerBean {
 	@JoinColumn(name="fk_question_id")
 	private QuestionBean question;
 	
-	@ManyToOne
+	@ManyToMany
+	@JsonIgnoreProperties(value = { "answers", "question"})
+	@JoinTable(
+		name = "answers_chosen",
+		joinColumns = @JoinColumn(name = "answer_id"),
+		inverseJoinColumns = @JoinColumn(name = "answer_option_id"))
+	Set<AnswerOptionBean> chosenAnswers;
+	
+	/*@ManyToOne
 	@JsonIgnoreProperties(value = {"answerOptionId", "answers", "question"})
 	@JoinColumn(name="fk_answer_option_id", nullable=true)
 	private AnswerOptionBean answerOption;
-	
+	*/
 	@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "answered_date", nullable = true, updatable = false)
     @CreatedDate
@@ -60,12 +71,13 @@ public class AnswerBean {
 		this.question = question;
 	}
 
-	public AnswerOptionBean getAnswerOption() {
-		return answerOption;
+	
+	public Set<AnswerOptionBean> getChosenAnswers() {
+		return chosenAnswers;
 	}
 
-	public void setAnswerOption(AnswerOptionBean answerOption) {
-		this.answerOption = answerOption;
+	public void setChosenAnswers(Set<AnswerOptionBean> chosenAnswers) {
+		this.chosenAnswers = chosenAnswers;
 	}
 
 	public Date getAnsweredDate() {

@@ -1,11 +1,12 @@
 package com.springboot.ibiza.surveyapp.jpa.beans;
 
+import java.util.List;
 
 public class AnswerJsonBean {
 	
 	private Long questionId;
 	
-	private Long answerOptionId;
+	private List<AnswerOptionBean> answerOptions;
 	
 	private String answerStr;
 
@@ -27,13 +28,14 @@ public class AnswerJsonBean {
 		this.answerStr = answerStr;
 	}
 
-	public Long getAnswerOptionId() {
-		return answerOptionId;
+	public List<AnswerOptionBean> getAnswerOptions() {
+		return answerOptions;
 	}
 
-	public void setAnswerOptionId(Long answerOptionId) {
-		this.answerOptionId = answerOptionId;
+	public void setAnswerOptions(List<AnswerOptionBean> answerOptions) {
+		this.answerOptions = answerOptions;
 	}
+
 	
 	
 	

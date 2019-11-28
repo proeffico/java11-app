@@ -53,10 +53,16 @@ public class AnswerController {
 		
 		answersJson.forEach(answerObj -> {
 			AnswerBean answer = new AnswerBean();
-			AnswerOptionBean option = answerOptionRepo.findByAnswerOptionId(answerObj.getAnswerOptionId());
+			//AnswerOptionBean option = answerOptionRepo.findByAnswerOptionId(answerObj.getAnswerOptionId());
+			List<AnswerOptionBean> answerOptions = answerObj.getAnswerOptions();
+			//eli meidän täytyy nyt 
+			answerOptions.forEach(answerOption => {
+				
+			});
+			
 			QuestionBean question = questionRepo.findByQuestionId(answerObj.getQuestionId());
 			answer.setQuestion(question);
-			answer.setAnswerOption(option);
+			//answer.setAnswerOption(option);
 			answer.setAnswerStr(answerObj.getAnswerStr());
 			
 			answer.setAnsweredDate(new Date());
