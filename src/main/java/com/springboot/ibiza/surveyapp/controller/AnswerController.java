@@ -3,6 +3,7 @@ package com.springboot.ibiza.surveyapp.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -54,14 +55,14 @@ public class AnswerController {
 		answersJson.forEach(answerObj -> {
 			AnswerBean answer = new AnswerBean();
 			//AnswerOptionBean option = answerOptionRepo.findByAnswerOptionId(answerObj.getAnswerOptionId());
-			List<AnswerOptionBean> answerOptions = answerObj.getAnswerOptions();
-			//eli meidän täytyy nyt 
-			answerOptions.forEach(answerOption => {
-				
-			});
+			Set<AnswerOptionBean> answerOptions = answerObj.getAnswerOptions();
+			//eli meidän täytyy nyt tallentaa answerOption lista answer olioon
+			
 			
 			QuestionBean question = questionRepo.findByQuestionId(answerObj.getQuestionId());
 			answer.setQuestion(question);
+			
+			answer.setChosenAnswers(answerOptions);
 			//answer.setAnswerOption(option);
 			answer.setAnswerStr(answerObj.getAnswerStr());
 			
