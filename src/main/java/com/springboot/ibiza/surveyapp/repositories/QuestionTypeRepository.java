@@ -10,4 +10,5 @@ import com.springboot.ibiza.surveyapp.jpa.beans.QuestionTypeBean;
 @Repository
 public interface QuestionTypeRepository extends JpaRepository<QuestionTypeBean, Integer> {
     List<QuestionTypeBean> findAll();
+    QuestionTypeBean findByQuestionTypeId(int id);
 }

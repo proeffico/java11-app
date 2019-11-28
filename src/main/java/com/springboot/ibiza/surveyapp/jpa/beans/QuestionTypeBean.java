@@ -57,5 +57,10 @@ public class QuestionTypeBean {
 		this.questions = questions;
 	}
 
+	@Override
+	public String toString() {
+		return "QuestionTypeBean [questionTypeId=" + questionTypeId + ", type=" + type + "]";
+	}
+
 
 }

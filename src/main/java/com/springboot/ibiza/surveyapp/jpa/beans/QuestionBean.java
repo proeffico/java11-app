@@ -29,15 +29,17 @@ public class QuestionBean {
 	private String question;
 	
 	@ManyToOne
-	@JsonIgnoreProperties(value = {"questions", "user"})
+	@JsonIgnoreProperties(value = {"questions", "user"}, allowSetters=true)
 	@JoinColumn(name="fk_questionary_id")
 	private QuestionaryBean questionary;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JsonIgnoreProperties(value={"questions", "questionTypeId"})
+	@ManyToOne
+	@JsonIgnoreProperties(value={"questions", "questionTypeId"}, allowSetters=true)
 	@JoinColumn(name="fk_question_type_id")
 	private QuestionTypeBean questionType;
 	
+
+
 	@OneToMany(mappedBy="question", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<AnswerBean> answers;
@@ -93,6 +95,11 @@ public class QuestionBean {
 
 	public void setAnswers(List<AnswerBean> answers) {
 		this.answers = answers;
+	}
+	@Override
+	public String toString() {
+		return "QuestionBean [questionId=" + questionId + ", question=" + question + ", questionary=" + questionary
+				+ ", questionType=" + questionType + "]";
 	}
 	
 	

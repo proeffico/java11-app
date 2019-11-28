@@ -45,11 +45,14 @@ public class QuestionaryController {
 	/* REST API FOR ::QUESTIONARY:: OBJECT */
 	@RequestMapping(value="/questionary", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<QuestionaryBean> createQuestionary(@Valid @RequestBody QuestionaryBean questionary) throws URISyntaxException {
-		logger.info("Start creating a new questionary: "+ questionary.getQuestions().get(0).getQuestionType().getType()); 
+		//logger.info("Start creating a new questionary: "+ questionary.getQuestions()); 
 		UserBean user = userRepo.save(new UserBean());
 		logger.info("UserId: "+user.getUserId()+" has been created!");
+		logger.info("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq: "+ questionary.getQuestions().get(0).getQuestionType().getQuestionTypeId());
+		logger.info("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq: "+ questionary.getQuestions().get(0).getQuestion());
 
 		questionary.setUser(user);
+		//tämä tallentaa jackson kirjaston JSON pohjalta luoman QuestionaryBeanin tietokantaan
 		QuestionaryBean result = questionaryRepo.save(questionary);
 		logger.info("QuestionaryId: "+result.getQuestionaryId()+" has been created!");
 		

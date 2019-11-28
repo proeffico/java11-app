@@ -87,7 +87,7 @@ public class QuestionaryBean {
 
 	@Override
 	public String toString() {
-		return "QuestionaryBean [questionaryId=" + questionaryId + ", name=" + name + ", questions=" + questions
+		return "QuestionaryBean [questionaryId=" + questionaryId + ", name=" + name + ","
 				+ ", createdDate=" + createdDate + ", user=" + user + "]";
 	}
 	
