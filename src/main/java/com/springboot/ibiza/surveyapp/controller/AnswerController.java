@@ -55,7 +55,7 @@ public class AnswerController {
 		answersJson.forEach(answerObj -> {
 			AnswerBean answer = new AnswerBean();
 			//AnswerOptionBean option = answerOptionRepo.findByAnswerOptionId(answerObj.getAnswerOptionId());
-			Set<AnswerOptionBean> answerOptions = answerObj.getAnswerOptions();
+			List<AnswerOptionBean> answerOptions = answerObj.getAnswerOptions();
 			//eli meidän täytyy nyt tallentaa answerOption lista answer olioon
 			
 			

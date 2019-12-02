@@ -7,7 +7,7 @@ public class AnswerJsonBean {
 	
 	private Long questionId;
 	
-	private Set<AnswerOptionBean> answerOptions;
+	private List<AnswerOptionBean> answerOptions;
 	
 	private String answerStr;
 
@@ -29,11 +29,11 @@ public class AnswerJsonBean {
 		this.answerStr = answerStr;
 	}
 
-	public Set<AnswerOptionBean> getAnswerOptions() {
+	public List<AnswerOptionBean> getAnswerOptions() {
 		return answerOptions;
 	}
 
-	public void setAnswerOptions(Set<AnswerOptionBean> answerOptions) {
+	public void setAnswerOptions(List<AnswerOptionBean> answerOptions) {
 		this.answerOptions = answerOptions;
 	}
 

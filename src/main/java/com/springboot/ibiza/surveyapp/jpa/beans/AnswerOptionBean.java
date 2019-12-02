@@ -35,7 +35,7 @@ public class AnswerOptionBean {
 	@JsonIgnore
 	private List<AnswerBean> answers;*/
 	@ManyToMany(mappedBy = "chosenAnswers")
-	Set<AnswerBean> answers;
+	List<AnswerBean> answers;
 	
 	@ManyToOne
 	@JsonIgnore
@@ -66,11 +66,11 @@ public class AnswerOptionBean {
 		this.answerOption = answerOption;
 	}
 
-	public Set<AnswerBean> getAnswers() {
+	public List<AnswerBean> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(Set<AnswerBean> answers) {
+	public void setAnswers(List<AnswerBean> answers) {
 		this.answers = answers;
 	}
 

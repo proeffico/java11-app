@@ -1,6 +1,7 @@
 package com.springboot.ibiza.surveyapp.jpa.beans;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -43,7 +44,7 @@ public class AnswerBean {
 		name = "answers_chosen",
 		joinColumns = @JoinColumn(name = "answer_id"),
 		inverseJoinColumns = @JoinColumn(name = "answer_option_id"))
-	Set<AnswerOptionBean> chosenAnswers;
+	List<AnswerOptionBean> chosenAnswers;
 	
 	/*@ManyToOne
 	@JsonIgnoreProperties(value = {"answerOptionId", "answers", "question"})
@@ -72,11 +73,11 @@ public class AnswerBean {
 	}
 
 	
-	public Set<AnswerOptionBean> getChosenAnswers() {
+	public List<AnswerOptionBean> getChosenAnswers() {
 		return chosenAnswers;
 	}
 
-	public void setChosenAnswers(Set<AnswerOptionBean> chosenAnswers) {
+	public void setChosenAnswers(List<AnswerOptionBean> chosenAnswers) {
 		this.chosenAnswers = chosenAnswers;
 	}
 

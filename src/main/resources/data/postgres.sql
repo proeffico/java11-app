@@ -1,4 +1,4 @@
--- When create a table in Postgres, should check is that name is used in another table or not. 
+/*-- When create a table in Postgres, should check is that name is used in another table or not. 
    Example user is a default table in PostgreSQL. If you still like to use the same name, you have to put it in a quote mark
 -- Name	Storage Size	Range
 -- SMALLSERIAL	2 bytes	1 to 32,767
@@ -77,3 +77,4 @@ INSERT INTO ibiza_questionary(name, fk_user_id) VALUES ('Kysely 1',1), ('Kysely 
 INSERT INTO ibiza_question (question, fk_questionary_id, fk_question_type_id) VALUES ('Question 1', 1,1), ('Question 2', 1, 2), ('Question 3',1, 3);
 INSERT INTO ibiza_question (question, fk_questionary_id, fk_question_type_id) VALUES ('Question 23',2, 2), ('Question 24', 2, 1), ('Question 25',2, 3);
 INSERT INTO ibiza_question (question, fk_questionary_id, fk_question_type_id) VALUES ('Question 31', 3, 3), ('Question 32', 3, 2), ('Question 33',3, 1);
+*/
