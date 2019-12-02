@@ -3,6 +3,7 @@ package com.springboot.ibiza.surveyapp.controller;
 import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -53,6 +54,7 @@ public class QuestionaryController {
 
 		questionary.setUser(user);
 		//tämä tallentaa jackson kirjaston JSON pohjalta luoman QuestionaryBeanin tietokantaan
+		questionary.setCreatedDate(new Date());
 		QuestionaryBean result = questionaryRepo.save(questionary);
 		logger.info("QuestionaryId: "+result.getQuestionaryId()+" has been created!");
 		
