@@ -30,29 +30,29 @@
        </div>
    </div>
 	   <h1 style = "text-align: center">REST-ohje digitiimille</h1>
-	   <h4 style = "padding-top: 20px">Huom! Kaikki endpointit käyttävät seuraavaa url osoitetta: <span class="badge badge-secondary">http://localhost:8081/api/v1</span></h4>
+	   <h4 style = "padding-top: 20px">Huom! Kaikki endpointit käyttävät seuraavaa url osoitetta: <span class="badge badge-secondary">https://survey-app-ibiza.herokuapp.com/api/v2</span></h4>
 	<div id = "allQuestionaries" class = "col-sm mt-10">
 	   <h2 style = "padding-top: 20px">All Questionaries:</h2>
 	   <h5 style = "padding-top: 20px">Method:  <span style = "font-size: 15px">GET</span></h5>
-	   <h5 style = "padding-top: 20px">Endpoint: <a th:href="@{/api/v1/questionaries}">/questionaries</a></h5>
+	   <h5 style = "padding-top: 20px">Endpoint: <a th:href="@{/api/v2/questionaries}">/questionaries</a></h5>
 	   <h5 style = "padding-top: 20px">JSON Example:</h5>
-	   <img th:src = "@{/image/JSON_example_All_Questionaries.png}"/>
+	   <img th:src = "@{/image/JSON_All_Questionarys.jpeg}"/>
 	</div>
 	
 	<div id = "QuestionariesById">
 	   <h2 style = "padding-top: 20px">Questionaries By Id:</h2>
 	   <h5 style = "padding-top: 20px">Method:  <span style = "font-size: 15px">GET</span></h5>
-	   <h5 style = "padding-top: 20px">Endpoint: <a th:href="@{/api/v1/questionaries/questionary/1}">/questionaries/questionary/{id}</a></h5>
+	   <h5 style = "padding-top: 20px">Endpoint: <a th:href="@{/api/v2/questionaries/questionary/4}">/questionaries/questionary/{id}</a></h5>
 	   <h5 style = "padding-top: 20px">JSON Example:</h5>
-	   <img th:src = "@{/image/JSON_example_All_QuestionariesById.png}"/>
+	   <img th:src = "@{/image/JSON_QuestionarysById.jpeg}"/>
 	</div>
 	
 	<div id = "PostAnswers">
 	   <h2 style = "padding-top: 20px">Post Answers:</h2>
 	   <h5 style = "padding-top: 20px">Method:  <span style = "font-size: 15px">POST (Test with PostMan/etc.)</span></h5>
-	   <h5 style = "padding-top: 20px">Endpoint: <a th:href="@{/api/v1/answers}">/answers</a></h5>
+	   <h5 style = "padding-top: 20px">Endpoint: <a th:href="@{/api/v2/answers}">/answers</a></h5>
 	   <h5 style = "padding-top: 20px">JSON Example:</h5>
-	   <img th:src = "@{/image/JSON_example_POST_Answers.png}"/>
+	   <img th:src = "@{/image/JSON_Post_Answers.jpeg}"/>
 	</div>
 </div>   
 <script src="../../jquery/jquery-3.3.1.min.js" th:src="@{/jquery/jquery-3.3.1.min.js}"></script>
